@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   get '/jobrequest' => 'landing_page#index'
   get '/committee' => 'landing_page#index'
   root 'landing_page#index'
+  #root 'staffs#index'
 end
