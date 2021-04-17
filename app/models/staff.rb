@@ -1,4 +1,4 @@
-require './base.rb'
+require './app/models/base.rb'
 
 class Staff < Base
     
