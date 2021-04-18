@@ -1,20 +1,54 @@
-<%= label :job, :resident_name, 'Resdient Name', :class => 'col-form-label'  %>
-<%= job[:FirstName] %>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/divbs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+<form>
+  <div class="form-row">
+    <div class="form-group col-md-4">
+    <%= label :job, :resident_name, 'Resident Name'  %>
+    <input type="text" class="form-control" id="resident_name" value="<%= job[:FirstName] %>" readonly>
+    </div>
+    
+           <div class="form-group col-md-4">
+       <%= label :job, :phone, 'Phone' %>
+    <input type="text" class="form-control" id="phone" value="<%= job[:PhoneNumber] %>" readonly>
+    </div>
+     <div class="form-group col-md-4">
+    <%= label :job, :best_time_to_call, 'Best Time To Call' %>
+    <input type="text" class="form-control" id="best_time_to_call" value="<%= job[:BestTimeToCall] %>" readonly>
+    </div>
+    </div>
+    <div class="form-row">
+     <div class="form-group col-md-4">
+    <%= label :job, :partnership, 'Partnership'  %>
+    <input type="text" class="form-control" id="partnership" value="<%= job[:Partnership] %>" readonly>
+    </div>
+    <div class="form-group col-md-4">
+     <%= label :job, :status, 'Status' %>
+    <input type="text" class="form-control" id="status" value="<%= job[:Status] %>" readonly>
+    </div>
+        <div class="form-group col-md-4">
+     <%= label :job, :job_number, 'Status' %>
+    <input type="text" class="form-control" id="job_number" value="<%= job[:JobNumber] %>" readonly>
+    </div>
+    </div>
+    <div class="form-row">
+    <div class="form-group  col-md-12">
+    <%= label :job, :address, 'Address' %>
+    <input type="text" class="form-control" id="address" value="<%= job[:Address].html_safe %>" readonly>
+    </div>
+    </div>
+    <div class="form-row">
+    <div class="form-group  col-md-12">
+     <%= label :job, :description, 'Job Description' %>
+    <input type="text" class="form-control" id=<%= job[:JobDescription] %> value="<%= job[:JobDescription]%>" readonly>
+    </div>
+    </div>
+    <div class="form-row">
+    <div class="form-group  col-md-12">
+     <%= label :job, :comment  %>
+    <input type="text" class="form-control" id=<%= job[:Comment] %> value=<%= job[:Comment]%> readonly>
+    </div>
+  </div>
 
-<%= label :job, :address, 'Address', :class => 'col-form-label'  %>
-<%= job[:Address] %>
-
-<%= label :job, :description, 'Job Description', :class => 'col-form-label'  %>
-<%= job[:JobDescription] %>
-
-<%= label :job, :phone, 'Phone', :class => 'col-form-label'  %>
-<%= job[:PhoneNumber] %>
-
-<%= label :job, :best_time_to_call, 'Best Time To Call', :class => 'col-form-label'  %>
-<%= job[:BestTimeToCall] %>
-
-<%= label :job, :status, 'Status', :class => 'col-form-label'  %>
-<%= job[:Status] %>
-
-<%= label :job, :comment, 'Comment', :class => 'col-form-label'  %>
-<%= job[:Comment] %>
+</form>

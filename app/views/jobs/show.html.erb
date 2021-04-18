@@ -1,8 +1,3 @@
-<h2>Job: <em><%= job[:JobNumber] %></em></h2>
-<h2>Partnership: <em><%= job[:Partnership] %></em></h2>
-
 <%= render partial: "jobs/job_details", locals: { job: job } %>
+<button type="submit" class="btn btn-primary">Edit</button>
 
-<div class="row">
-  <%= link_to 'Edit', edit_job_path(job[:JobNumber]), :class => 'btn btn-primary col-2' %>
-</div>
