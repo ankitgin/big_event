@@ -1,62 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <%= stylesheet_link_tag 'style.css' %>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Staff Assistant</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-  <link href="style.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://m.w3newbie.com/you-tube.css">
-</head>
-<body>
-
-<!-- Navigation -->
-<div class="img-fluid">
-  <a href="http://bigeventonline.tamu.edu/"><img src="https://drive.google.com/uc?export=view&id=12vo0BS-T6mbNp7EnUTb9w-U_kW1rnbLK" width="100%"></a>
-</div>
-
-<nav class="navbar navbar-expand-md navbar-light bg-light">
-  <div class="container-fluid">
-    <h2 class="font-weight-bold"> Welcome! </h2>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Job Request</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Sign Up</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Log In</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-<%= @current_partnership %>
-
 <!--- Partnership selection -->
 <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <%= @current_partnership %>
-  </button>
-<!--  - Rails code-->
-<!--  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">-->
-    <%# @partnerships.each do |p| %>
-<!--      <a class="dropdown-item" href="#" ><%#= @p %></a>-->
-    <%# end %>
-<!--  </div>-->
+  <%= select_tag 'selected_partnership', options_for_select(@partnerships), :onchange => "indexAjax()" %>
 </div>
 
 
@@ -94,13 +38,10 @@
 <!--- jobs pages navigation if jobs>50 or so --->
 
 
-<!---  --->
+<script>
+  function indexAjax() {
+      partnership = $("[name='selected_partnership']");
+      // AJAX partnerhip.val()
 
-
-<!-- Footer -->
-<hr class="my-4">
-<center> <h5>The Big Event at Texas A&M University</h5></center>
-<hr class="my-4">
-
-</body>
-</html>
+  }
+</script>

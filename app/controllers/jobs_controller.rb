@@ -1,4 +1,4 @@
-class JobsController < ActionController::Base
+class JobsController < ApplicationController
   def index
     @id = 3
   end
