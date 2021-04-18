@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   #get '/committee' => 'index#index'
   #root 'staffs#index'
   root 'landing_page#index'
-  resources :jobs, only: [:show]
+  resources :jobs, only: [:show, :edit]
+  resources :partnership, only: [:show]
 end

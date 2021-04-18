@@ -41,7 +41,10 @@
 <script>
   function indexAjax() {
       partnership = $("[name='selected_partnership']");
-      // AJAX partnerhip.val()
-
+      // debugger
+      p_name = partnership.val()
+      loc = "/partnership/" + p_name;
+      // debugger
+      window.location = loc
   }
 </script>
