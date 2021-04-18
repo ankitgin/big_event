@@ -1,126 +1,47 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <%= stylesheet_link_tag 'style.css' %>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Complete Bootstrap 4 Website Layout</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-  <link href="style.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://m.w3newbie.com/you-tube.css">
-</head>
-<body>
-​
-<!-- Navigation -->
-​
-<div class="img-fluid">
-  <a href="http://bigeventonline.tamu.edu/"><img src="https://drive.google.com/uc?export=view&id=12vo0BS-T6mbNp7EnUTb9w-U_kW1rnbLK" width="100%"></a>
+<!--- Partnership selection -->
+<div class="dropdown">
+  <%= select_tag 'selected_partnership', options_for_select(@partnerships), :onchange => "indexAjax()" %>
 </div>
-​
-<nav class="navbar navbar-expand-md navbar-light bg-light">
-  <div class="container-fluid">
-    <h2 class="font-weight-bold"> Welcome! </h2>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Job Request</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Sign Up</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Log In</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-​
-​
-​
-​
-<!--- Three Column Section -->
-​
-<div class="container-fluid padding">
-  <div class="row text-center padding">
-    <div class="col-xs-12 col-sm-6 col-md-4">
-      <div class="card">
-        <div class="card-body">
-          <h1>Student Participants</h5>
-            <p class="card-text">Sign up fro the Big Event by clicking the button below.</p>
-            <p><a href="https://bigeventonline.tamu.edu/signup" class="btn btn-primary">Online Student Sign-up</a></p>
-            <p>Already signed up for The Big Event? <a href="https://bigeventonline.tamu.edu/signup">Click here to view your registration details.</a></p>
-        </div>
-      </div>
-    </div>
-    <div class="col-xs-12 col-sm-6 col-md-4">
-      <div class="card">
-        <div class="card-body">
-          <h1>Community Members</h5>
-            <p class="card-text">Submit your job request online! Click the button below to continue.</p>
-            <p><a href="https://bigeventonline.tamu.edu/jobrequest" class="btn btn-primary">Job Request Form</a></p>
-        </div>
-      </div>
 
-    </div>
-    <div class="col-xs-12 col-sm-6 col-md-4">
-      <div class="card">
-        <div class="card-body">
-          <h1>The Big Event Committee</h5>
-            <p class="card-text">Access committee services by clicking the button below.</p>
-            <p><a href="https://bigeventonline.tamu.edu/committee" class="btn btn-primary">Committeee services</a></p>
-        </div>
-      </div>
 
-    </div>
-  </div>
-  <hr class="my-4">
-</div>
-​
-<!--- Image Slider -->
-<div id="slides" class="carousel slide" data-ride="carousel">
-  <ul class="carousel-indicators">
-    <li data-target="#slides" data-slide-to="0" class="active"></li>
-    <li data-target="#slides" data-slide-to="1"></li>
-    <li data-target="#slides" data-slide-to="2"></li>
-  </ul>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="https://bigevent.tamu.edu/wp-content/uploads/2015/06/MG_2224-1.jpg" alt="First slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="https://bigevent.tamu.edu/wp-content/uploads/2020/07/Copy-of-IMG_0758.jpg" alt="Second slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="https://bigevent.tamu.edu/wp-content/uploads/2020/07/Copy-of-IMG_0766.jpg" alt="Third slide">
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#slides" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#slides" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-​
-<!-- Footer -->
-<hr class="my-4">
-<center> <h5>The Big Event at Texas A&M University</h5></center>
-<hr class="my-4">
-​
-​
-</body>
-</html>
+<!--- Jobs according to partnership and staff login-->
+<table class="table table-hover table-striped col-md-12">
+    <thead>
+    <tr>
+      <th>Jobs</th>
+      <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%# @jobs.each do |job| %>
+<!--      <tr>-->
+<!--        <td>-->
+          <%#= job.title %>
+<!--        </td>-->
+<!--        <td>-->
+          <%#= job.status %>
+<!--        </td>-->
+<!--      </tr>-->
+    <%# end %>
+    <tr>
+      <td> Job1</td>
+      <td> Complete</td>
+    </tr>
+    <tr>
+      <td> Job1</td>
+      <td> WIP </td>
+    </tr>
+
+    </tbody>
+  </table>
+
+<!--- jobs pages navigation if jobs>50 or so --->
+
+
+<script>
+  function indexAjax() {
+      partnership = $("[name='selected_partnership']");
+      // AJAX partnerhip.val()
+
+  }
+</script>

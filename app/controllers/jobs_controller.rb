@@ -1,7 +1,8 @@
 class JobsController < ApplicationController
 
   def index
-    @id = 3
+    @current_partnership = "P1"
+    @partnerships=["P1","P2","P3"]
   end
 
   def show
