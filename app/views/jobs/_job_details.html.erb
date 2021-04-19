@@ -3,52 +3,52 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   
 <form>
-  <div class="form-row">
-    <div class="form-group col-md-4">
-    <%= label :job, :resident_name, 'Resident Name'  %>
-    <input type="text" class="form-control" id="resident_name" value="<%= job[:FirstName] %>" readonly>
-    </div>
-    
-           <div class="form-group col-md-4">
-       <%= label :job, :phone, 'Phone' %>
-    <input type="text" class="form-control" id="phone" value="<%= job[:PhoneNumber] %>" readonly>
-    </div>
-     <div class="form-group col-md-4">
-    <%= label :job, :best_time_to_call, 'Best Time To Call' %>
-    <input type="text" class="form-control" id="best_time_to_call" value="<%= job[:BestTimeToCall] %>" readonly>
-    </div>
-    </div>
     <div class="form-row">
-     <div class="form-group col-md-4">
-    <%= label :job, :partnership, 'Partnership'  %>
-    <input type="text" class="form-control" id="partnership" value="<%= job[:Partnership] %>" readonly>
-    </div>
-    <div class="form-group col-md-4">
-     <%= label :job, :status, 'Status' %>
-    <input type="text" class="form-control" id="status" value="<%= job[:Status] %>" readonly>
-    </div>
         <div class="form-group col-md-4">
-     <%= label :job, :job_number, 'Status' %>
-    <input type="text" class="form-control" id="job_number" value="<%= job[:JobNumber] %>" readonly>
-    </div>
-    </div>
-    <div class="form-row">
-    <div class="form-group  col-md-12">
-    <%= label :job, :address, 'Address' %>
-    <input type="text" class="form-control" id="address" value="<%= job[:Address].html_safe %>" readonly>
-    </div>
-    </div>
-    <div class="form-row">
-    <div class="form-group  col-md-12">
-     <%= label :job, :description, 'Job Description' %>
-    <input type="text" class="form-control" id=<%= job[:JobDescription] %> value="<%= job[:JobDescription]%>" readonly>
-    </div>
+            <%= label :job, :resident_name, 'Resident Name'  %>
+            <%= text_field_tag :resident_name, job[:FirstName], class: "form-control", disabled: true %>
+        </div>
+        
+        <div class="form-group col-md-4">
+            <%= label :job, :phone, 'Phone' %>
+            <%= text_field_tag :phone, job[:PhoneNumber],class: "form-control", disabled: true %>
+        </div>
+         <div class="form-group col-md-4">
+            <%= label :job, :best_time_to_call, 'Best Time To Call' %>
+            <%= text_field_tag :best_time_to_call, job[:BestTimeToCall], class: "form-control", disabled: true %>
+        </div>
     </div>
     <div class="form-row">
-    <div class="form-group  col-md-12">
-     <%= label :job, :comment  %>
-    <input type="text" class="form-control" id=<%= job[:Comment] %> value=<%= job[:Comment]%> readonly>
+        <div class="form-group col-md-4">
+            <%= label :job, :partnership, 'Partnership'  %>
+            <%= text_field_tag :partnership, job[:Partnership], class: "form-control", disabled: true %>
+        </div>
+        <div class="form-group col-md-4">
+            <%= label :job, :status, 'Status' %>
+            <%= text_field_tag :status, job[:Status], class: "form-control", disabled: true %>
+        </div>
+        <div class="form-group col-md-4">
+            <%= label :job, :job_number, 'Job Number' %>
+            <%= text_field_tag :job_number, job[:JobNumber], class: "form-control", disabled: true %>
+        </div>
     </div>
+    <div class="form-row">
+        <div class="form-group  col-md-12">
+            <%= label :job, :address, 'Address' %>
+            <%= text_field_tag :address, job[:Address], class: "form-control", disabled: true %>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group  col-md-12">
+            <%= label :job, :description, 'Job Description' %>
+            <%= text_field_tag :job_description, job[:JobDescription], class: "form-control", disabled: true %>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group  col-md-12">
+            <%= label :job, :comment, 'Comment'  %>
+            <%= text_field_tag :comment, job[:Comment], class: "form-control", disabled: true %>
+        </div>
   </div>
 
 </form>
