@@ -2,7 +2,13 @@ require 'google/cloud/firestore'
 
 class Base
     def self.db_object
-        @cred ||= Google::Cloud::Firestore::Credentials.new('./key.json')
+        # @cred ||= Google::Cloud::Firestore::Credentials.new('./key.json')
+        gcp = './key.json'
+        if defined?RAILS_ENV
+            gcp = JSON.parse(gcp_key) 
+       end
+       
+        @cred ||= Google::Cloud::Firestore::Credentials.new(gcp)        
         
         @db ||= Google::Cloud::Firestore.new(
             project_id: 'the-big-event-online',
