@@ -1,7 +1,12 @@
 class PartnershipController < ApplicationController
 
   def show
-    @current_partnership = "P1"
-    @partnerships=["P1","P2","P3"]
+      if(params[:id].present?)
+        @current_partnership = params[:id]
+      else
+        @current_partnership = 'all'
+      end
+      @jobs_to_show = ::Job.jobs_for_partnership(params[:id])
+      @partnerships= ::Job.all_partnerships
   end
 end

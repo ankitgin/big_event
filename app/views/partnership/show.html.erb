@@ -1,6 +1,6 @@
 <!--- Partnership selection -->
 <div class="dropdown">
-  <%= select_tag 'selected_partnership', options_for_select(@partnerships), :onchange => "indexAjax()" %>
+  <%= select_tag 'selected_partnership', options_for_select(@partnerships, :selected=>@current_partnership), :onchange => "indexAjax()" %>
 </div>
 
 
@@ -10,41 +10,32 @@
     <tr>
       <th>Jobs</th>
       <th>Status</th>
+      <th>Description</th>
     </tr>
     </thead>
     <tbody>
-    <%# @jobs.each do |job| %>
-<!--      <tr>-->
-<!--        <td>-->
-          <%#= job.title %>
-<!--        </td>-->
-<!--        <td>-->
-          <%#= job.status %>
-<!--        </td>-->
-<!--      </tr>-->
-    <%# end %>
-    <tr>
-      <td> Job1</td>
-      <td> Complete</td>
-    </tr>
-    <tr>
-      <td> Job1</td>
-      <td> WIP </td>
-    </tr>
-
+    <% @jobs_to_show.each do |job| %>
+      <tr>
+        <td>
+          <%= link_to  "#{job[:JobNumber]}", job_path("#{job[:JobNumber]}"), id: 'job_link' %>
+        </td>
+        <td>
+          <%= job[:Status] %>
+        </td>
+        <td>
+          <%= job[:JobDescription] %>
+        </td>
+      </tr>
+    <% end %>
     </tbody>
   </table>
 
 <!--- jobs pages navigation if jobs>50 or so --->
-
-
 <script>
   function indexAjax() {
       partnership = $("[name='selected_partnership']");
-      // debugger
       p_name = partnership.val()
       loc = "/partnership/" + p_name;
-      // debugger
       window.location = loc
   }
 </script>
