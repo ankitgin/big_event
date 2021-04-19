@@ -5,7 +5,8 @@ ruby '3.0.0'
 
 #for bootstrap
 gem 'bootstrap', '~> 4.6.0'
-
+#for cucumber
+gem 'rexml'
 gem 'mimemagic', '~> 0.3.10'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.1'
@@ -58,6 +59,9 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem 'cucumber-rails', '~> 2.3.0'
+  gem 'cucumber-rails-training-wheels'
+  gem 'database_cleaner'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
