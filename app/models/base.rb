@@ -4,8 +4,10 @@ class Base
     def self.db_object
         # @cred ||= Google::Cloud::Firestore::Credentials.new('./key.json')
         gcp = './key.json'
-        if defined?RAILS_ENV
-            gcp = JSON.parse(gcp_key) 
+        if defined?ENV && defined?ENV["RAILS_ENV"]
+            if (ENV["RAILS_ENV"] == "production")
+                gcp = JSON.parse(ENV["gcp_key"])
+            end
        end
        
         @cred ||= Google::Cloud::Firestore::Credentials.new(gcp)        
