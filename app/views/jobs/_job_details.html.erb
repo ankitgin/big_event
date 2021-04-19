@@ -1,20 +1,54 @@
-<%= label :job, :resident_name, 'Resdient Name', :class => 'col-form-label'  %>
-<%= job[:FirstName] %>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/divbs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+<form>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <%= label :job, :resident_name, 'Resident Name'  %>
+            <%= text_field_tag :resident_name, job[:FirstName], class: "form-control", disabled: true %>
+        </div>
+        
+        <div class="form-group col-md-4">
+            <%= label :job, :phone, 'Phone' %>
+            <%= text_field_tag :phone, job[:PhoneNumber],class: "form-control", disabled: true %>
+        </div>
+         <div class="form-group col-md-4">
+            <%= label :job, :best_time_to_call, 'Best Time To Call' %>
+            <%= text_field_tag :best_time_to_call, job[:BestTimeToCall], class: "form-control", disabled: true %>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <%= label :job, :partnership, 'Partnership'  %>
+            <%= text_field_tag :partnership, job[:Partnership], class: "form-control", disabled: true %>
+        </div>
+        <div class="form-group col-md-4">
+            <%= label :job, :status, 'Status' %>
+            <%= text_field_tag :status, job[:Status], class: "form-control", disabled: true %>
+        </div>
+        <div class="form-group col-md-4">
+            <%= label :job, :job_number, 'Job Number' %>
+            <%= text_field_tag :job_number, job[:JobNumber], class: "form-control", disabled: true %>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group  col-md-12">
+            <%= label :job, :address, 'Address' %>
+            <%= text_field_tag :address, job[:Address], class: "form-control", disabled: true %>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group  col-md-12">
+            <%= label :job, :description, 'Job Description' %>
+            <%= text_field_tag :job_description, job[:JobDescription], class: "form-control", disabled: true %>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group  col-md-12">
+            <%= label :job, :comment, 'Comment'  %>
+            <%= text_field_tag :comment, job[:Comment], class: "form-control", disabled: true %>
+        </div>
+  </div>
 
-<%= label :job, :address, 'Address', :class => 'col-form-label'  %>
-<%= job[:Address] %>
-
-<%= label :job, :description, 'Job Description', :class => 'col-form-label'  %>
-<%= job[:JobDescription] %>
-
-<%= label :job, :phone, 'Phone', :class => 'col-form-label'  %>
-<%= job[:PhoneNumber] %>
-
-<%= label :job, :best_time_to_call, 'Best Time To Call', :class => 'col-form-label'  %>
-<%= job[:BestTimeToCall] %>
-
-<%= label :job, :status, 'Status', :class => 'col-form-label'  %>
-<%= job[:Status] %>
-
-<%= label :job, :comment, 'Comment', :class => 'col-form-label'  %>
-<%= job[:Comment] %>
+</form>
