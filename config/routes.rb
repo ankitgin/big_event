@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   root 'landing_page#index'
   resources :jobs, only: [:show, :edit]
   resources :partnership, only: [:show]
+  
+  get '/auth/:provider/callback', to: 'authentication#googleAuth'
 end
