@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources :partnership, only: [:show]
   
   get '/auth/:provider/callback', to: 'authentication#googleAuth'
+  get 'auth/failure', to: redirect('/')
 end
