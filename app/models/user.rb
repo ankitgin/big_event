@@ -1,19 +1,39 @@
 require './app/models/base.rb'
 
 class User < Base
-    def self.from_omniauth(access_token)
-        #data = access_token.info
-        #user = User.where(email: data['email']).first
-        
-        query = db_ref_staff.where "Email", "=", "christianjsmith17@tamu.edu"
+    attr_accessor :email, :access_token, :first_name, :google_refresh_token, :last_name, :level, :uin
 
-        # Uncomment the section below if you want users to be created if they don't exist
-        # unless user
-        #     user = User.create(name: data['name'],
-        #        email: data['email'],
-        #        password: Devise.friendly_token[0,20]
-        #     )
-        # end
+    def initialize(data)
+        @email = data.email
+        @access_token = data.access_token
+        @first_name = data.first_name
+        @google_refresh_token = data.google_refresh_token.present? ? data.google_refresh_token : nil
+        @last_name = data.last_name
+        @level = data.level
+        @uin = data.uin
+    end
+
+    def self.staff_member?(user_doc)
+        return user_doc.get().exists?
+    end
+
+    def self.from_omniauth(data)
+        # data = access_token.info        
+        db_ref_staff.doc data.email
+        # user = User.where(email: data['email'])
+    end
+
+    def self.save(user_doc)
+        user_data = {
+            AccessToken: @access_token,
+            Email: @email,
+            FirstName: @first_name,
+            GoogleRefreshToken: @google_refresh_token,
+            LastName: @last_name,
+            Level: @level,
+            UIN: @uin
+        }
+        user_doc.set(user_data)
     end
     
     private
@@ -21,4 +41,5 @@ class User < Base
         def self.db_ref_staff()
             @doc_ref_staff ||= db_object.col "staff"
         end
+        
 end
