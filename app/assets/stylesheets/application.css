@@ -22,7 +22,6 @@ body {
     background-repeat: repeat-y, no-repeat;
     background-size: contain, cover;
 }
-
 .container-width {
     width: 90%;
     max-width: 1150px;
