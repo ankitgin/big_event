@@ -7,10 +7,20 @@ class Job < Base
         query = db_ref.where "JobNumber", "=", "#{jobs_id}"
         
         {}.tap do |hash|
-            query.get do |city|
-              hash[:data] = city.data
+            query.get do |job|
+              hash[:data] = job.data
             end
         end
+    end
+    
+    def self.update(job_params)
+        job_ref = db_ref.doc "#{job_params[:JobNumber]}"
+        
+        job_params.each do |key, val|
+            job_ref.update({ "#{key}": "#{val}" })
+        end
+        
+        show(job_params[:JobNumber])
     end
 
     def self.jobs_for_partnership(partnership)
@@ -27,8 +37,10 @@ class Job < Base
     end
 
     private
-        attr_accessor :doc_ref
-        def self.db_ref()
-            @doc_ref ||= db_object.col "jobs_2021"
-        end
+    
+    attr_accessor :doc_ref
+    
+    def self.db_ref()
+        @doc_ref ||= db_object.col "jobs_2021"
+    end
 end
