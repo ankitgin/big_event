@@ -26,6 +26,17 @@ class Job < Base
         all_partnerships = db_ref.get().map  { |x| x[:Partnership] }
     end
 
+    def self.partnership_for_user(user)
+        query = db_ref.where "CommitteeEmail", "=", "#{user}"
+        query.get do |job|
+            return job.data[:Partnership]
+        end
+    end
+
+    def self.all_status()
+        all_status = db_ref.get().map  { |x| x[:Status] }
+    end
+
     private
         attr_accessor :doc_ref
         def self.db_ref()

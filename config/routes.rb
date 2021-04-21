@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   root 'landing_page#index'
   resources :jobs, only: [:show, :edit]
   resources :partnership, only: [:show]
+  get '/dummy', to: 'partnership#check_user', as: 'check_user'
+  get '/status', to: 'job_status#show'
 end
