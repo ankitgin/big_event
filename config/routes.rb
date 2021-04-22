@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   
   get '/auth/:provider/callback', to: 'authentication#googleAuth'
   get 'auth/failure', to: redirect('/')
+
+  # get '/:level/:id', to: :level'#show'   
 end

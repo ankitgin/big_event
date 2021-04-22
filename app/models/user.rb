@@ -1,36 +1,38 @@
 require './app/models/base.rb'
 
 class User < Base
-    attr_accessor :email, :access_token, :first_name, :google_refresh_token, :last_name, :level, :uin
+    attr_accessor :id, :email, :first_name, :last_name, :level, :uin, :partnership, :superior_email
 
-    def initialize(data)
-        @email = data.email
-        @access_token = data.access_token
-        @first_name = data.first_name
-        @google_refresh_token = data.google_refresh_token.present? ? data.google_refresh_token : nil
-        @last_name = data.last_name
-        @level = data.level
-        @uin = data.uin
+    def initialize(user_doc, credentials)
+        @email = user_doc[:Email]
+        @first_name = user_doc[:FirstName]
+        @last_name = user_doc[:LastName]
+        @level = user_doc[:Level]
+        @partnership = user_doc[:PartnershipNumber]
+        @superior_email = user_doc[:PartnershipNumber]
+        @uin = user_doc[:UIN]
+        @id = @partnership == "" || @partnership == nil ? @email : @partnership
+    
+        @access_token = credentials.token
     end
 
     def self.staff_member?(user_doc)
-        return user_doc.get().exists?
+        return user_doc.exists?
     end
 
-    def self.from_omniauth(data)
-        # data = access_token.info        
-        db_ref_staff.doc data.email
-        # user = User.where(email: data['email'])
+    def self.from_omniauth(info)
+        db_ref_staff.doc(info.email).get
+        # db_ref_staff.where(:email, :==, info.email)
     end
 
-    def self.save(user_doc)
+    def save(user_doc)
         user_data = {
-            AccessToken: @access_token,
             Email: @email,
             FirstName: @first_name,
-            GoogleRefreshToken: @google_refresh_token,
             LastName: @last_name,
             Level: @level,
+            PartnershipNumber: @partnership,
+            SuperiorEmail: @superior_email,
             UIN: @uin
         }
         user_doc.set(user_data)
