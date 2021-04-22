@@ -5,11 +5,14 @@ Rails.application.routes.draw do
   #get '/committee' => 'index#index'
   #root 'staffs#index'
   root 'landing_page#index'
-  resources :jobs, only: [:show, :edit]
+  resources :jobs, only: [:show, :edit, :update]
   resources :partnership, only: [:show]
   
   get '/auth/:provider/callback', to: 'authentication#googleAuth'
   get 'auth/failure', to: redirect('/')
 
   # get '/:level/:id', to: :level'#show'   
+  get '/dummy', to: 'partnership#check_user', as: 'check_user'
+  get '/status', to: 'job_status#show'
+
 end

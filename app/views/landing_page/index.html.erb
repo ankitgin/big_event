@@ -27,7 +27,7 @@
         <div class="card-body">
           <h1>The Big Event Committee</h1>
             <p class="card-text">Access committee services by clicking the button below.</p>
-            <p><a href="/partnership/all" class="btn btn-primary">Committee services</a></p>
+            <p><%=link_to "Committee services", check_user_path(:user => "test@gmail.com"), class: "btn btn-primary"%></p>
         </div>
       </div>
 

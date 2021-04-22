@@ -18,14 +18,16 @@
     <%#= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%#= javascript_include_tag 'application' %>
-<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">-->
-
+    <!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">-->
+    <!--    #for job_status-->
+    <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js", "chartkick" %>
+    <%= javascript_include_tag "application", "chartkick" %>
   </head>
 
   <body>
       <!-- Navigation -->
       <div class="img-fluid">
-        <a href="http://bigeventonline.tamu.edu/"><img src="https://drive.google.com/uc?export=view&id=12vo0BS-T6mbNp7EnUTb9w-U_kW1rnbLK" width="100%"></a>
+        <%= link_to  image_tag('https://drive.google.com/uc?export=view&id=12vo0BS-T6mbNp7EnUTb9w-U_kW1rnbLK', style: 'width:100%;height:auto;'), root_path %>
       </div>
 
       <!-- Navigation -->
@@ -38,13 +40,13 @@
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
+                <%=link_to  "Home", root_path, class: "nav-link" %>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Job Request</a>
+                <a class="nav-link" href="https://bigeventonline.tamu.edu/jobrequest">Job Request</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Sign Up</a>
+                <a class="nav-link" href="https://bigeventonline.tamu.edu/signup">Sign Up</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/auth/google_oauth2">Log In with Google</a>
