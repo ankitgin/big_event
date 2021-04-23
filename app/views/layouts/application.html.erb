@@ -48,9 +48,17 @@
               <li class="nav-item">
                 <a class="nav-link" href="https://bigeventonline.tamu.edu/signup">Sign Up</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/auth/google_oauth2">Log In with Google</a>
-              </li>
+              <%# <% if !is_logged_in?%> %>
+                <li class="nav-item">
+                  <a class="nav-link" href="/auth/google_oauth2">Log In with Google</a>
+                </li>
+              <%# <% end %> %>
+              <% if @level == 'EX'%>
+                <li class="nav-item">
+                  <a class="nav-link" href="https://bigeventonline.tamu.edu/signup">Staff Directory</a>
+                </li>
+              <% end %>
+              
             </ul>
           </div>
         </div>
