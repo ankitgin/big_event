@@ -4,6 +4,6 @@ module ApplicationHelper
     end
 
     def level
-        @level = session[:level]
-    end
+        @level ||= session[:level] if is_logged_in?
+    end 
 end

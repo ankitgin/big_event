@@ -1,19 +1,16 @@
 require './app/models/base.rb'
 
 class User < Base
-    attr_accessor :id, :email, :first_name, :last_name, :level, :uin, :partnership, :superior_email
+    attr_accessor :email, :first_name, :last_name, :level, :uin, :partnership, :superior_email
 
-    def initialize(user_doc, credentials)
+    def initialize(user_doc)
         @email = user_doc[:Email]
         @first_name = user_doc[:FirstName]
         @last_name = user_doc[:LastName]
         @level = user_doc[:Level]
         @partnership = user_doc[:PartnershipNumber]
-        @superior_email = user_doc[:PartnershipNumber]
+        @superior_email = user_doc[:SuperiorEmail]
         @uin = user_doc[:UIN]
-        @id = @partnership == "" || @partnership == nil ? @email : @partnership
-    
-        @access_token = credentials.token
     end
 
     def self.staff_member?(user_doc)
@@ -22,7 +19,6 @@ class User < Base
 
     def self.from_omniauth(info)
         db_ref_staff.doc(info.email).get
-        # db_ref_staff.where(:email, :==, info.email)
     end
 
     def save(user_doc)
@@ -36,6 +32,14 @@ class User < Base
             UIN: @uin
         }
         user_doc.set(user_data)
+    end
+
+    def self.all_users
+        @users = []
+        db_ref_staff.get do |user|
+            @users << User.new(user)
+        end
+        @users
     end
     
     private

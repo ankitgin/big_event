@@ -13,7 +13,7 @@ class AuthenticationController < ApplicationController
             redirect_to reject_url
         else
             log_in(user_doc, credentials)
-            @user = User.new(user_doc, credentials)
+            @user = User.new(user_doc)
             # Access_token is used to authenticate request made from the rails application to the google server
             # Refresh_token to request new access_token
             # Note: Refresh_token is only sent once during the first request
@@ -26,6 +26,7 @@ class AuthenticationController < ApplicationController
     private 
         def log_in(user, credentials)
             session[:user_email] = user[:Email]
+            session[:level] = user[:Level]
             session[:expires_at] = credentials.expires_at
             session[:access_token] = credentials.token
             
@@ -38,6 +39,7 @@ class AuthenticationController < ApplicationController
         
             puts "User credentials in session:"
             puts session[:user_email]
+            puts session[:level]
             puts session[:expires_at]
             puts session[:access_token]
             puts session[:refresh_token]
