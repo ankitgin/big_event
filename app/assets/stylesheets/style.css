@@ -30,14 +30,12 @@ html,body {
     background-color: #563d7c;
     border:1px solid #563d7c;
 }
-
-
-
-
-
-
-
-
+.col_chart {
+    width: 40%;
+    height: 40%;
+    border: 1px solid #c3c3c3;
+    margin: auto;
+}
 
 
 /*---Media Queries --*/
