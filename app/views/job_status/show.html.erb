@@ -1,2 +1,4 @@
-<%= bar_chart @status_graph, height: "1000px" %>
-<%= column_chart @status_graph %>
+
+<div class="col_chart">
+<%= column_chart @status_graph, title: "Job Status", colors: ['5C9FEB'] %>
+</div>

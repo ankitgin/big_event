@@ -33,7 +33,7 @@ class Job < Base
     end
 
     def self.all_partnerships()
-        all_partnerships = db_ref.get().map  { |x| x[:Partnership] }
+        all_partnerships = (db_ref.get().map  { |x| x[:Partnership] }).compact.uniq
     end
 
     def self.partnership_for_user(user)
