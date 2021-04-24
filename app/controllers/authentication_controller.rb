@@ -34,16 +34,12 @@ class AuthenticationController < ApplicationController
                 session[:refresh_token] = credentials.refresh_token
             end
             
-            # ID is identified for user for uri, exec does not have partner
-            session[:id] = user[:PartnershipNumber] == "" ? user[:email] : user[:PartnershipNumber]
-        
             puts "User credentials in session:"
             puts session[:user_email]
             puts session[:level]
             puts session[:expires_at]
             puts session[:access_token]
             puts session[:refresh_token]
-            puts session[:id]
         end
 
         def refresh_token_if_expired

@@ -1,12 +1,11 @@
 require './app/models/base.rb'
 
 class User < Base
-    attr_accessor :email, :first_name, :last_name, :level, :uin, :partnership, :superior_email
+    attr_accessor :email, :name, :level, :uin, :partnership, :superior_email
 
     def initialize(user_doc)
         @email = user_doc[:Email]
-        @first_name = user_doc[:FirstName]
-        @last_name = user_doc[:LastName]
+        @name = user_doc[:Name]
         @level = user_doc[:Level]
         @partnership = user_doc[:PartnershipNumber]
         @superior_email = user_doc[:SuperiorEmail]
@@ -24,8 +23,7 @@ class User < Base
     def save(user_doc)
         user_data = {
             Email: @email,
-            FirstName: @first_name,
-            LastName: @last_name,
+            Name: @name,
             Level: @level,
             PartnershipNumber: @partnership,
             SuperiorEmail: @superior_email,
@@ -41,7 +39,36 @@ class User < Base
         end
         @users
     end
-    
+
+    def self.update_from_csv(csv_file_path)
+        user_table = CSV.parse(File.read(csv_file_path), :headers => true, :header_converters => :symbol)
+        # email_index = user_table.find_index {|row| row[0] == :email}
+        # headers = user_table.headers
+        # email_index = headers.find(:email)
+
+        # puts "email index"
+        # puts email_index
+        db_object.batch do |b|
+            puts "2"
+            user_table.each do |user|
+                user_entry = {}
+                id = ""
+                user.each do |field|
+                    if field[0] == :email
+                        id = field[1]
+                    end
+                    user_entry[field[0]]= field[1]
+                end
+                puts "staff/"+id
+                b.set("staff/"+id, user_entry)
+                puts "NEW USER ENTRY"
+                puts user_entry
+            end 
+            puts "3"
+        end
+        puts "4"
+    end
+
     private
         attr_accessor :doc_ref_staff
         def self.db_ref_staff()

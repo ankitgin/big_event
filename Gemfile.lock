@@ -84,6 +84,7 @@ GEM
     chartkick (4.0.3)
     concurrent-ruby (1.1.8)
     crass (1.0.6)
+    csv (3.1.9)
     cucumber (5.3.0)
       builder (~> 3.2, >= 3.2.4)
       cucumber-core (~> 8.0, >= 8.0.1)
@@ -364,6 +365,7 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   chartkick
+  csv
   cucumber-rails
   database_cleaner
   firebase
