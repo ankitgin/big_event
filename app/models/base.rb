@@ -26,7 +26,7 @@ end
 
 
 # READ FROM A COLLECTION AND DOCUMENT
-# doc_ref  = db.col "jobs_2021" 
+# doc_ref = db.col "jobs_2021" 
 # query = doc_ref.where "City", "=", "College Station"
 
 # query.get do |city|
