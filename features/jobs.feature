@@ -15,6 +15,6 @@ Background: jobs have been added to database
     When I am on the HomePage
     Then I am on the HomePage testing
   
-  # Scenario: Delete the test set jobs from the database
-  #   When I delete the jobs "2022-0000, 2022-0001, 2022-0002, 2022-0003, 2022-0004"
-  #   Then I should not see the the jobs "2022-0000, 2022-0001, 2022-0002, 2022-0003, 2022-0004"
+  Scenario: Delete the test set jobs from the database
+    When I delete the jobs "2022-0000, 2022-0001, 2022-0002, 2022-0003, 2022-0004"
+    Then I should not see the the jobs "2022-0000, 2022-0001, 2022-0002, 2022-0003, 2022-0004"
