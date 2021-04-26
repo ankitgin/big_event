@@ -48,16 +48,14 @@
               <li class="nav-item">
                 <a class="nav-link" href="https://bigeventonline.tamu.edu/signup">Sign Up</a>
               </li>
-              <% if !is_logged_in? %>
-                <li class="nav-item">
-                  <a class="nav-link" href="/auth/google_oauth2">Log In with Google</a>
-                </li>
-              <% end %>
-              <% if is_logged_in? && level == 'EX'%>
+              <% if level == 'EX'%>
                   <li class="nav-item">
-                    <a class="nav-link" href="/directory">Staff Directory</a>
+                    <a class="nav-link" href="/users">Staff Directory</a>
                   </li>
               <% end %>
+              <li class="nav-item">
+                <a class="nav-link" href="/auth/google_oauth2">Log In with Google</a>
+              </li>
             </ul>
           </div>
         </div>

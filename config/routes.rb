@@ -7,13 +7,13 @@ Rails.application.routes.draw do
   root 'landing_page#index'
   resources :jobs, only: [:show, :edit, :update]
   resources :partnership, only: [:show]
-  resources :directory, only: [:show]
   
   get 'auth/:provider/callback', to: 'authentication#googleAuth'
   get 'auth/failure', to: redirect('/')
  
   get '/dummy', to: 'partnership#check_user', as: 'check_user'
   get '/status', to: 'job_status#show'
-  get '/directory', to: 'directory#index'
+  get '/users', to: 'users#index'
+  post '/users/upload', to: 'users#upload', as: 'upload'
 
 end

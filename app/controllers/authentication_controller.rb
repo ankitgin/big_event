@@ -25,8 +25,8 @@ class AuthenticationController < ApplicationController
 
     private 
         def log_in(user, credentials)
-            session[:user_email] = user[:Email]
-            session[:level] = user[:Level]
+            session[:user_email] = user[:email]
+            session[:level] = user[:level]
             session[:expires_at] = credentials.expires_at
             session[:access_token] = credentials.token
             

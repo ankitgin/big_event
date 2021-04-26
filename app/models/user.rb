@@ -1,15 +1,20 @@
 require './app/models/base.rb'
 
 class User < Base
-    attr_accessor :email, :name, :level, :uin, :partnership, :superior_email
+    extend CarrierWave::Mount
+    mount_uploader :csv, CsvUploader
+    
+    attr_accessor :email, :first_name, :last_name, :level, :uin, :partnership_number, :superior_email, :committee
 
     def initialize(user_doc)
-        @email = user_doc[:Email]
-        @name = user_doc[:Name]
-        @level = user_doc[:Level]
-        @partnership = user_doc[:PartnershipNumber]
-        @superior_email = user_doc[:SuperiorEmail]
-        @uin = user_doc[:UIN]
+        @email = user_doc[:email]
+        @first_name = user_doc[:firstname]
+        @last_name = user_doc[:lastname]
+        @level = user_doc[:level]
+        @partnership_number = user_doc[:partnershipnumber]
+        @committee = user_doc[:committee]
+        @superior_email = user_doc[:superioremail]
+        @uin = user_doc[:uin]
     end
 
     def self.staff_member?(user_doc)
@@ -20,19 +25,25 @@ class User < Base
         db_ref_staff.doc(info.email).get
     end
 
-    def save(user_doc)
+    def save
+        self.store_csv!
+    end
+
+    def save_in_db(user_doc)
         user_data = {
-            Email: @email,
-            Name: @name,
-            Level: @level,
-            PartnershipNumber: @partnership,
-            SuperiorEmail: @superior_email,
-            UIN: @uin
+            email: @email,
+            firstname: @first_name,
+            lastname: @last_name,
+            uin: @uin,
+            level: @level,
+            partnershipnumber: @partnership,
+            committee: @committee,
+            superioremail: @superior_email
         }
         user_doc.set(user_data)
     end
 
-    def self.all_users
+    def self.all
         @users = []
         db_ref_staff.get do |user|
             @users << User.new(user)
@@ -40,16 +51,10 @@ class User < Base
         @users
     end
 
-    def self.update_from_csv(csv_file_path)
-        user_table = CSV.parse(File.read(csv_file_path), :headers => true, :header_converters => :symbol)
-        # email_index = user_table.find_index {|row| row[0] == :email}
-        # headers = user_table.headers
-        # email_index = headers.find(:email)
-
-        # puts "email index"
-        # puts email_index
+    def self.update_from_csv(csv_attachment)
+        user_table = CSV.parse(csv_attachment.tempfile.open, :headers => true, :header_converters => :symbol)
+        headers = user_table.headers
         db_object.batch do |b|
-            puts "2"
             user_table.each do |user|
                 user_entry = {}
                 id = ""
@@ -59,14 +64,26 @@ class User < Base
                     end
                     user_entry[field[0]]= field[1]
                 end
-                puts "staff/"+id
-                b.set("staff/"+id, user_entry)
-                puts "NEW USER ENTRY"
-                puts user_entry
+                if !id.nil?
+                    b.set("staff/"+id, user_entry)
+                end
             end 
-            puts "3"
         end
-        puts "4"
+    end
+
+    def self.to_csv
+        attributes = %w{email firstname lastname level uin partnershipnumber superioremail committee}
+
+        CSV.generate(headers: true) do |csv|
+            csv << attributes
+            self.all.each do |user|
+                csv << [user.email, user.first_name, user.last_name, user.level, user.uin, user.partnership_number, user.superior_email, user.committee]
+            end
+        end
+    end
+
+    def self.valid_csv?(csv_attachment)
+        return csv_attachment.present? && User.original_content_type(csv_attachment.original_filename).in?(%w(.csv .xlsx))
     end
 
     private
@@ -74,5 +91,14 @@ class User < Base
         def self.db_ref_staff()
             @doc_ref_staff ||= db_object.col "staff"
         end
-        
+
+        def self.original_content_type(original_filename)
+            content_type = ""
+            period_index = original_filename.rindex(".")
+            if !period_index.nil?
+                content_type = original_filename[period_index..]
+            end
+            content_type
+        end
+
 end

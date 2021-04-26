@@ -44,6 +44,8 @@ gem 'omniauth-google-oauth2'
 gem 'oauth2'
 
 gem 'csv'
+gem 'carrierwave'
+# gem 'file_validators'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
