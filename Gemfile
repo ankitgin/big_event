@@ -73,6 +73,7 @@ group :test do
   gem 'capybara', '>= 3.26'
   gem 'rspec'
   gem 'database_cleaner'
+  gem 'simplecov', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
