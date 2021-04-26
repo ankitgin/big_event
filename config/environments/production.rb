@@ -1,6 +1,6 @@
 require "active_support/core_ext/integer/time"
 
-Rails.configuration.domain_name = 'https://big-event-online.herokuapp.com/'
+Rails.configuration.domain_name = 'https://pacific-journey-39446.herokuapp.com/'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
