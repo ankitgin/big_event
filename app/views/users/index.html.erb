@@ -1,7 +1,7 @@
 <h1>Staff Directory</h1>
 
-<%= link_to 'Download CSV', users_path(format: :csv) , class: 'btn btn-primary' %>
-<%= form_tag({:action => :upload}, :multipart => true) do %>
+<%= link_to 'Export to CSV', users_path(format: :csv) , class: 'btn btn-primary', style: 'display:inline;' %>
+<%= form_tag({:action => :upload}, style: 'display:inline;', :multipart => true) do %>
   <%= submit_tag "Upload CSV", class: 'btn btn-primary' %>
   <%= file_field_tag :attachments, multiple: true, direct_upload: true %>
 <% end %>
