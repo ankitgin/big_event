@@ -48,6 +48,11 @@
               <li class="nav-item">
                 <a class="nav-link" href="https://bigeventonline.tamu.edu/signup">Sign Up</a>
               </li>
+              <% if level == 'EX'%>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/users">Staff Directory</a>
+                  </li>
+              <% end %>
               <li class="nav-item">
                 <a class="nav-link" href="/auth/google_oauth2">Log In with Google</a>
               </li>

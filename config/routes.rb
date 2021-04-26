@@ -8,11 +8,12 @@ Rails.application.routes.draw do
   resources :jobs, only: [:show, :edit, :update]
   resources :partnership, only: [:show]
   
-  get '/auth/:provider/callback', to: 'authentication#googleAuth'
+  get 'auth/:provider/callback', to: 'authentication#googleAuth'
   get 'auth/failure', to: redirect('/')
-
-  # get '/:level/:id', to: :level'#show'   
+ 
   get '/dummy', to: 'partnership#check_user', as: 'check_user'
   get '/status', to: 'job_status#show'
+  get '/users', to: 'users#index'
+  post '/users/upload', to: 'users#upload', as: 'upload'
 
 end

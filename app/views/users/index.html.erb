@@ -1,0 +1,47 @@
+<h1>Staff Directory</h1>
+
+<%= link_to 'Export to CSV', users_path(format: :csv) , class: 'btn btn-primary', style: 'display:inline;' %>
+<%= form_tag({:action => :upload}, style: 'display:inline;', :multipart => true) do %>
+  <%= submit_tag "Upload CSV", class: 'btn btn-primary' %>
+  <%= file_field_tag :attachments, multiple: true, direct_upload: true %>
+<% end %>
+<table class="table table-striped col-md-12">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Staff Level</th>
+      <th>Partnership ID</th>
+      <th>Committee</th>
+      <th>Superior Email</th>
+      <th>UIN</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td>
+          <%= user.first_name %> <%= user.last_name %>
+        </td>
+        <td>
+          <%= user.email %>
+        </td>
+        <td>
+          <%= user.uin %>
+        </td>
+        <td>
+          <%= user.level %>
+        </td>
+        <td>
+          <%= user.partnership_number %>
+        </td>
+        <td>
+          <%= user.committee %>
+        </td>
+        <td>
+          <%= user.superior_email %>
+        </td>        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
