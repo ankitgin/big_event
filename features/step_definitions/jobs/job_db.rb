@@ -18,12 +18,21 @@ class JobDb < Base
         show(job_params[:JobNumber])
     end
     
-    # def self.delete(jobs)
-    #     db_ref.get do |jobs|
-    #         job_ref = db_ref.doc "#{jobs.document_id}"
-    #         job_ref.delete
-    #     end
-    # end
+    def self.delete(job)
+        job_ref = db_ref.doc "#{job}"
+        job_ref.delete
+    end
+    
+    def self.jobs_count(jobs)
+        db_jobs = []
+        
+        jobs.each do |job|
+            job_ref = db_ref.doc "#{job}"
+            db_jobs.append(job_ref.get.data) if job_ref.get.data.present?
+        end
+        
+        db_jobs.size
+    end
     
     def self.count
         db_ref.get().count

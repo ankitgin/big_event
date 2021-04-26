@@ -22,5 +22,14 @@ end
 
 When /I delete the jobs (.*)/ do |jobs|
   jobs = jobs.delete('\\"').split(',')  # removing backslash from the string and converting it into an array
-  JobDb.delete(jobs)
+  jobs.each do |job|
+    JobDb.delete(job.strip)
+  end
+end
+
+Then /I should not see the the jobs (.*)/ do |jobs|
+  jobs = jobs.delete('\\"').split(',')  # removing backslash from the string and converting it into an array
+  jobs = jobs.map { |job| job.strip }   # strip extra space in the string
+  jobs_count = JobDb.jobs_count(jobs)
+  expect(jobs_count == 0)
 end
