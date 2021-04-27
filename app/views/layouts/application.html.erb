@@ -40,13 +40,13 @@
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <%=link_to  "Home", root_path, class: "nav-link" %>
+                <%=link_to  "Home", root_path, class: "nav-link", id: "home" %>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="https://bigeventonline.tamu.edu/jobrequest">Job Request</a>
+                <a class="nav-link" href="https://bigeventonline.tamu.edu/jobrequest" id="jobrequest">Job Request</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="https://bigeventonline.tamu.edu/signup">Sign Up</a>
+                <a class="nav-link" href="https://bigeventonline.tamu.edu/signup" id="signup">Sign Up</a>
               </li>
               <% if level == 'EX'%>
                   <li class="nav-item">
@@ -54,7 +54,7 @@
                   </li>
               <% end %>
               <li class="nav-item">
-                <a class="nav-link" href="/auth/google_oauth2">Log In with Google</a>
+                <a class="nav-link" href="/auth/google_oauth2" id="login">Log In with Google</a>
               </li>
             </ul>
           </div>
