@@ -6,6 +6,7 @@ require "active_support/core_ext/integer/time"
 # and recreated between test runs. Don't rely on the data there!
 
 Rails.configuration.domain_name = 'http://localhost:3000/'
+Rails.configuration.user_col = 'staff_test'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.

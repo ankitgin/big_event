@@ -5,7 +5,6 @@ class UsersController < ApplicationController
             redirect_to root_path
         end
         @users = User.all
-        # @users = []
         respond_to do |format|
             format.html
             format.csv { send_data User.to_csv, filename: "TBE-staff-directory-#{Date.today}.csv" }

@@ -20,7 +20,7 @@ class User < Base
     def self.staff_member?(user_doc)
         return user_doc.exists?
     end
-
+    
     def self.from_omniauth(info)
         db_ref_staff.doc(info.email).get
     end
@@ -65,7 +65,7 @@ class User < Base
                     user_entry[field[0]]= field[1]
                 end
                 if !id.nil?
-                    b.set("staff/"+id, user_entry)
+                    b.set(Rails.configuration.user_col + "/" + id, user_entry)
                 end
             end 
         end
@@ -89,7 +89,7 @@ class User < Base
     private
         attr_accessor :doc_ref_staff
         def self.db_ref_staff()
-            @doc_ref_staff ||= db_object.col "staff"
+            @doc_ref_staff ||= db_object.col Rails.configuration.user_col
         end
 
         def self.original_content_type(original_filename)
