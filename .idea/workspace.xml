@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="815b2122-92ca-4ee0-ae34-da224ad2050a" name="Default Changelist" comment="" />
+    <list default="true" id="815b2122-92ca-4ee0-ae34-da224ad2050a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/features/feature_files/landing_page/landing_page.feature" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/step_definitions/web_steps.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/support/paths.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/support/selectors.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/landing_page/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/landing_page/index.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/jobs.feature" beforeDir="false" afterPath="$PROJECT_DIR$/features/jobs.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/step_definitions/jobs/job_steps.rb" beforeDir="false" afterPath="$PROJECT_DIR$/features/step_definitions/jobs/job_steps.rb" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,6 +31,12 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/features/feature_files" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SpringUtil" SPRING_PRE_LOADER_OPTION="true" RAKE_SPRING_PRE_LOADER_OPTION="true" RAILS_SPRING_PRE_LOADER_OPTION="true" />
@@ -32,6 +49,12 @@
       <updated>1616002687388</updated>
       <workItem from="1616002690115" duration="928000" />
       <workItem from="1616003786981" duration="648000" />
+      <workItem from="1618802163885" duration="6910000" />
+      <workItem from="1618809784462" duration="1411000" />
+      <workItem from="1618967728468" duration="5196000" />
+      <workItem from="1618972932651" duration="4336000" />
+      <workItem from="1619111602134" duration="3422000" />
+      <workItem from="1619456839251" duration="9524000" />
     </task>
     <servers />
   </component>
