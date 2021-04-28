@@ -33,7 +33,11 @@
       <!-- Navigation -->
       <nav class="navbar navbar-expand-md navbar-light bg-light">
         <div class="container-fluid">
-          <h2 class="font-weight-bold"> Welcome! </h2>
+          <% if is_logged_in?%>
+            <h2 class="font-weight-bold"> Welcome <% current_user.first_name %> <% current_user.last_name %> !</h2>
+          <% else%> 
+            <h2 class="font-weight-bold"> Welcome! </h2>
+          <% end %>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -47,15 +51,22 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="https://bigeventonline.tamu.edu/signup" id="signup">Sign Up</a>
-              </li>
-              <% if level == 'EX'%>
+              </li>  
+              <% if !is_logged_in? %>
+                <li class="nav-item">
+                  <a class="nav-link" href="/auth/google_oauth2" id="login">Log In with Google</a>
+                </li>
+              <% else %>
+                <% if current_user.level == 'EX'%>
                   <li class="nav-item">
                     <a class="nav-link" href="/users">Staff Directory</a>
                   </li>
+                <% end %>
+                <li class="nav-item">
+                  <a class="nav-link" href="/logout" id="logout">Log out</a>
+                </li>
               <% end %>
-              <li class="nav-item">
-                <a class="nav-link" href="/auth/google_oauth2" id="login">Log In with Google</a>
-              </li>
+              
             </ul>
           </div>
         </div>

@@ -21,8 +21,8 @@ class User < Base
         return user_doc.exists?
     end
 
-    def self.from_omniauth(info)
-        db_ref_staff.doc(info.email).get
+    def self.get(email)
+        db_ref_staff.doc(email).get
     end
 
     def save
