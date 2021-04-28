@@ -17,6 +17,10 @@ class User < Base
         @uin = user_doc[:uin]
     end
 
+    def self.current_user_EX?
+        return session[:level] == 'EX'
+    end
+
     def self.staff_member?(user_doc)
         return user_doc.exists?
     end

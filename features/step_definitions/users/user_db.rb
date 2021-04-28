@@ -30,6 +30,19 @@ class UserDb < Base
         count
     end
 
+    def self.clean(user_table)
+        user_hashes = user_table.hashes
+        db_ref_staff.get do |user|
+            if !user_hashes.any? { |hash| hash['email'] == user['email']}
+                user.ref.delete
+            end
+        end
+    end
+
+    def self.get(email)
+        db_ref_staff.doc(email).get
+    end
+
     private
         attr_accessor :doc_ref_staff
         def self.db_ref_staff()

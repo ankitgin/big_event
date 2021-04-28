@@ -60,4 +60,18 @@ Rails.application.configure do
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
+
+  # Mocking Omniauth for testing
+  OmniAuth.config.test_mode = true
+  OmniAuth.config.add_mock(:google_oauth2, {
+    "provider" => "google_oauth2",
+    "uid" => "100000000000000000000",
+    "info" =>{ "email" => 'chemsworth@tamu.edu' },
+    "credentials" => {
+      "token" => "TOKEN",
+      "refresh_token" => "REFRESH_TOKEN",
+      "expires_at" => 1496120719,
+      "expires" => true
+    }
+  })
 end

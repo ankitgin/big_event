@@ -3,7 +3,7 @@
 <%= link_to 'Export to CSV', users_path(format: :csv) , class: 'btn btn-primary', style: 'display:inline;' %>
 <%= form_tag({:action => :upload}, style: 'display:inline;', :multipart => true) do %>
   <%= submit_tag "Upload CSV", class: 'btn btn-primary' %>
-  <%= file_field_tag :attachments, multiple: true, direct_upload: true %>
+  <%= file_field_tag :attachments, multiple: true, direct_upload: true, id: 'csv_file' %>
 <% end %>
 <table class="table table-striped col-md-12" id="users">
   <thead>

@@ -7,7 +7,7 @@ class UsersController < ApplicationController
         @users = User.all
         respond_to do |format|
             format.html
-            format.csv { send_data User.to_csv, filename: "TBE-staff-directory-#{Date.today}.csv" }
+            format.csv { send_data User.to_csv, filename: "TBE-staff-directory.csv" }
         end
     end
 
