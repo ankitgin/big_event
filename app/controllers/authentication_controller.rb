@@ -5,7 +5,7 @@ class AuthenticationController < ApplicationController
         info = auth_hash.info
         
         credentials = auth_hash.credentials
-        user_doc = User.from_omniauth(info)
+        user_doc = User.get(info.email)
 
         #reject user if needed (not staff member)
         reject_url = "https://bigevent.tamu.edu/"
@@ -21,6 +21,16 @@ class AuthenticationController < ApplicationController
             redirect_to root_path
             
         end
+    end
+
+    def logout
+        session.delete(:user_email)
+        session.delete(:level)
+        session.delete(:expires_at)
+        session.delete(:access_token)
+        session.delete(:refresh_token)
+
+        redirect_to root_path, notice: "Logged out!"
     end
 
     private 

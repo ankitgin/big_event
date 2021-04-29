@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   
   get 'auth/:provider/callback', to: 'authentication#googleAuth'
   get 'auth/failure', to: redirect('/')
- 
+  get '/logout', to: 'authentication#logout'
+
   get '/dummy', to: 'partnership#check_user', as: 'check_user'
   get '/status', to: 'job_status#show'
 
