@@ -7,19 +7,6 @@ Given /the following users exist/ do |users_table|
   # fail "Unimplemented"
 end
 
-When /^(?:|I )press "([^"]*)"$/ do |button|
-  click_link button
-end
-
-Then /^(?:|I )should be on (.+)$/ do |page_name|
-  current_path = URI.parse(current_url).path
-  if current_path.respond_to? :should
-    current_path.should == path_to(page_name)
-  else
-    assert_equal path_to(page_name), current_path
-  end
-end
-
 When /^the authentication page/ do
   redirect_to '/auth/google_oauth2'
 end
