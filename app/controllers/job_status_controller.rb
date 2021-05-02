@@ -10,7 +10,16 @@ class JobStatusController < ApplicationController
         status_counts[status] = 1
       end
     end
+    unique_status = ::Job.unique_status()
+    unique_status.each do |status|
+     if !status_counts.key?(status)
+       status_counts[status] = 0
+     end
+    end
+    
     @status_graph = hash_to_a(status_counts)
+
+    
   end
 
   def hash_to_a(hash)
