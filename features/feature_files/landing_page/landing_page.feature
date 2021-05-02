@@ -7,7 +7,7 @@ Feature: go to the home page
     Given I am on the "HomePage"
 
   Scenario: Landing page
-    Then I should see the following: "Online Student Sign-Up" "Job Request Form" "Committee Services" "Home" "Job Request" "Sign Up" "Log In with Google"
+    Then I should see the following: "Online Student Sign" "Job Request Form" "Committee Services" "Home" "Job Request" "Sign Up" "Log In with Google"
 
   Scenario: Follow Home
     And I follow "home"

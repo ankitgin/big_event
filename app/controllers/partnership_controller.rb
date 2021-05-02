@@ -1,10 +1,6 @@
 class PartnershipController < ApplicationController
 
   def show
-    if(session[:user].present?)
-      @current_user = params[:user]
-    end
-
     if(params[:id].present?)
         @current_partnership = params[:id]
     else
@@ -16,13 +12,17 @@ class PartnershipController < ApplicationController
   end
 
   def check_user
-    @current_user = nil
-    if(params[:user].present?)
-      @current_user = params[:user]
-      @current_partnership = ::Job.partnership_for_user(@current_user)
-      redirect_to(partnership_path(:id => @current_partnership))
+        
+    if(session[:user_email].present?)  
+        if(session[:partnershipnumber].present?)
+            @current_partnership = session[:partnershipnumber]
+            redirect_to(partnership_path(:id => @current_partnership))
+        else
+            flash[:notice] = "User partnership unspecified"
+            redirect_to root_path
+        end
     else
-      flash[:warning] = "User not signed in"
+      flash[:notice] = "User not signed in"
       redirect_to root_path
     end
   end
