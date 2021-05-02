@@ -2,53 +2,60 @@
   <script src="https://ajax.googleapis.com/ajax/divbs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   
-<form>
+<%= form_tag job_path, :method => :put do %>
     <div class="form-row">
         <div class="form-group col-md-4">
             <%= label :job, :resident_name, 'Resident Name'  %>
-            <%= text_field_tag :resident_name, job[:FirstName], class: "form-control", disabled: true %>
+            <%= text_field_tag "FirstName", job[:FirstName], class: "form-control"%>
+
         </div>
         
         <div class="form-group col-md-4">
             <%= label :job, :phone, 'Phone' %>
-            <%= text_field_tag :phone, job[:PhoneNumber],class: "form-control", disabled: true %>
+            <%= text_field_tag "PhoneNumber", job[:PhoneNumber],class: "form-control" %>
         </div>
          <div class="form-group col-md-4">
             <%= label :job, :best_time_to_call, 'Best Time To Call' %>
-            <%= text_field_tag :best_time_to_call, job[:BestTimeToCall], class: "form-control", disabled: true %>
+            <%= text_field_tag "BestTimeToCall", job[:BestTimeToCall], class: "form-control" %>
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-4">
             <%= label :job, :partnership, 'Partnership'  %>
-            <%= text_field_tag :partnership, job[:Partnership], class: "form-control", disabled: true %>
+            <div class="dropdown">
+                  <%= select_tag 'Partnership', options_for_select(partnerships, :selected=>job[:Partnership]),  class: "form-control", style: "height:34px" %>
+            </div>
         </div>
         <div class="form-group col-md-4">
             <%= label :job, :status, 'Status' %>
-            <%= text_field_tag :status, job[:Status], class: "form-control", disabled: true %>
+            <div class="dropdown">
+                  <%= select_tag 'Status', options_for_select(all_status, :selected=>job[:Status]),  class: "form-control", style: "height:34px" %>
+            </div>
         </div>
         <div class="form-group col-md-4">
             <%= label :job, :job_number, 'Job Number' %>
-            <%= text_field_tag :job_number, job[:JobNumber], class: "form-control", disabled: true %>
+            <%= text_field_tag "JobNumber", job[:JobNumber], class: "form-control", readonly: true %>
         </div>
     </div>
     <div class="form-row">
         <div class="form-group  col-md-12">
             <%= label :job, :address, 'Address' %>
-            <%= text_field_tag :address, job[:Address], class: "form-control", disabled: true %>
+            <%= text_field_tag "Address", job[:Address], class: "form-control" %>
         </div>
     </div>
     <div class="form-row">
         <div class="form-group  col-md-12">
             <%= label :job, :description, 'Job Description' %>
-            <%= text_field_tag :job_description, job[:JobDescription], class: "form-control", disabled: true %>
+            <%= text_field_tag "JobDescription", job[:JobDescription], class: "form-control" %>
         </div>
     </div>
     <div class="form-row">
         <div class="form-group  col-md-12">
             <%= label :job, :comment, 'Comment'  %>
-            <%= text_field_tag :comment, job[:Comment], class: "form-control", disabled: true %>
+            <%= text_field_tag "Comment", job[:Comment], class: "form-control" %>
         </div>
   </div>
 
-</form>
+  <%= submit_tag 'Update Job Info', :class => 'btn btn-primary' %>
+  <%= link_to 'Cancel', job_path("#{job[:JobNumber]}"), :class => 'btn btn-secondary' %>
+<% end %>
