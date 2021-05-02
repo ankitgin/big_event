@@ -15,11 +15,7 @@ class Job < Base
     
     def self.update(job_params)
         job_ref = db_jobs_2021.doc "#{job_params[:JobNumber]}"
-        
-        job_params.each do |key, val|
-            job_ref.update({ "#{key}": "#{val}" })
-        end
-        
+        job_ref.set(job_params.to_h)
         show(job_params[:JobNumber])
     end
 
