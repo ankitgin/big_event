@@ -2,6 +2,11 @@ require './app/models/base.rb'
 
 class Job < Base
     # READ FROM A COLLECTION AND DOCUMENT
+    
+    # can add more years for future
+    def self.all_job_years
+        %w(2018 2019 2020 2021)
+    end
 
     def self.show(jobs_id)
         query = db_jobs_2021.where "JobNumber", "=", "#{jobs_id}"
@@ -39,12 +44,59 @@ class Job < Base
         all_partnerships = (db_jobs_2021.get().map  { |x| x[:Partnership] }).compact.uniq
     end
 
+    def self.partnership_for_user(user)
+        query = db_jobs_2021.where "CommitteeEmail", "=", "#{user}"
+        query.get do |job|
+            return job.data[:Partnership]
+        end
+    end
+
     def self.all_status()
         all_status = db_jobs_2021.get().map  { |x| x[:Status] }
     end
     
     def self.unique_status()
         all_status = db_job_statuses.get().map {|x| x.document_id }
+    end
+    
+    def self.all_jobs_in_year(job_year)
+        job_list = []
+        #query = db_jobs_2021.where("JobNumber like ?", "#{job_year}")
+        query = db_jobs_2021.where("JobYear", "=", "#{job_year}")
+        query.get do |j|
+            job_list << j.data
+        end
+        job_list
+    end
+    
+    def self.to_csv_jobs(jobs)
+        attributes = %w{JobNumber JobStatus Partnership Description}
+        
+        CSV.generate(headers: true) do |csv|
+            csv << attributes
+            jobs.each do |job|
+                csv << [job[:JobNumber], job[:Status], job[:Partnership], job[:JobDescription]]
+            end
+        end
+    end
+    
+    def self.update_from_csv(csv_attachment, job_year)
+        user_table = CSV.parse(csv_attachment.tempfile.open, :headers => true, :header_converters => :symbol)
+        db_object.batch do |b|
+            user_table.each do |user|
+                user_entry = {}
+                id = ""
+                user.each do |field|
+                    if field[0] == :jobnumber
+                        id = field[1]
+                    end
+                    user_entry[field[0]] = field[1]
+                end
+                if !id.nil?
+                    b.set("jobs_"+ job_year + "/" + id, user_entry)
+                end
+            end 
+        end
     end
 
     private

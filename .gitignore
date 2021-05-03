@@ -38,3 +38,12 @@ coverage/.resultset.json
 coverage/.resultset.json.lock
 coverage/assets/
 key.json
+
+
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+
