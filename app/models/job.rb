@@ -9,7 +9,7 @@ class Job < Base
     end
 
     def self.show(jobs_id)
-        query = db_jobs_2021where "JobNumber", "=", "#{jobs_id}"
+        query = db_jobs_2021.where "JobNumber", "=", "#{jobs_id}"
         
         {}.tap do |hash|
             query.get do |job|
