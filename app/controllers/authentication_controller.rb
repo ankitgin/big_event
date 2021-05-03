@@ -1,12 +1,15 @@
 class AuthenticationController < ApplicationController
     def googleAuth
+        if Rails.env == "test"
+            request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:google_oauth2] 
+        end
         # Get access tokens from the google server
         auth_hash = request.env["omniauth.auth"]
         info = auth_hash.info
-        
+
         credentials = auth_hash.credentials
         user_doc = User.get(info.email)
-
+        
         #reject user if needed (not staff member)
         reject_url = "https://bigevent.tamu.edu/"
         if !User.staff_member?(user_doc)
@@ -46,12 +49,6 @@ class AuthenticationController < ApplicationController
                 session[:refresh_token] = credentials.refresh_token
             end
             
-            puts "User credentials in session:"
-            puts session[:user_email]
-            puts session[:level]
-            puts session[:expires_at]
-            puts session[:access_token]
-            puts session[:refresh_token]
         end
 
         def refresh_token_if_expired

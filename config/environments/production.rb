@@ -1,6 +1,7 @@
 require "active_support/core_ext/integer/time"
 
 Rails.configuration.domain_name = 'https://big-event-online.herokuapp.com/'
+Rails.configuration.user_col = 'staff'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.

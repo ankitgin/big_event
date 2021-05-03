@@ -1,7 +1,11 @@
 module ApplicationHelper
     def is_logged_in?
-        puts !session[:access_token].nil? 
-        !session[:access_token].nil? 
+        if !session[:access_token].nil? && User.staff_member?(User.get(session[:user_email]))
+            return true
+        else
+            session.clear
+            return false            
+        end
     end
 
     def current_user
