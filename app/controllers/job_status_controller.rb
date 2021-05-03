@@ -1,4 +1,5 @@
 class JobStatusController < ApplicationController
+  before_action :check_login
 
   def show
     all_status = ::Job.all_status()
@@ -16,10 +17,7 @@ class JobStatusController < ApplicationController
        status_counts[status] = 0
      end
     end
-    
     @status_graph = hash_to_a(status_counts)
-
-    
   end
 
   def hash_to_a(hash)
@@ -28,4 +26,10 @@ class JobStatusController < ApplicationController
     end
   end
 
+  def check_login
+    if(!session[:user_email].present?)
+      flash[:notice] = "User not signed in"
+      redirect_to root_path
+    end
+  end
 end

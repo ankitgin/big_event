@@ -225,8 +225,19 @@
   </div>
 
   <div>
-    <%= link_to 'Edit', edit_job_path( job[:JobNumber]), :class => 'btn btn-primary' %>
+    <% if(action_button_access) %>
+      <%= link_to 'Edit', edit_job_path(job[:JobNumber]), :class => 'btn btn-primary' %>
+      <%= link_to action_button_value, update_job_status_path({job_data: job, cancel: false}), :class => 'btn btn-primary', readonly: action_button_access %>
+    <% else %>
+      <button type="button" class="btn btn-primary disabled">Edit</button>
+      <button type="button" class="btn btn-primary disabled"><%= action_button_value %></button>
+      <button type="button" class="btn btn-primary disabled">Cancel</button>
+    <% end %>
+    <% if(session[:level]=="EX") %>
+      <%= link_to 'Cancel', update_job_status_path({job_data: job, cancel: true}), :class => 'btn btn-primary', readonly: action_button_access %>
+    <% end %>
   </div>
+
 </form>
 
 

@@ -86,6 +86,13 @@ class User < Base
         return csv_attachment.present? && User.original_content_type(csv_attachment.original_filename).in?(%w(.csv .xlsx))
     end
 
+    def self.get_superior_email(user_email)
+        query = db_ref_staff.where "email", "=", "#{user_email}"
+        query.get do |staff|
+            return staff.data[:superioremail]
+        end
+    end
+
     private
         attr_accessor :doc_ref_staff
         def self.db_ref_staff()
