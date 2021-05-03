@@ -9,7 +9,7 @@ class Job < Base
     end
 
     def self.show(jobs_id)
-        query = db_ref.where "JobNumber", "=", "#{jobs_id}"
+        query = db_jobs_2021where "JobNumber", "=", "#{jobs_id}"
         
         {}.tap do |hash|
             query.get do |job|
@@ -25,7 +25,7 @@ class Job < Base
     end
 
     def self.jobs_for_partnership(partnership)
-        query = db_ref.where "Partnership", "=", "#{partnership}"
+        query = db_jobs_2021.where "Partnership", "=", "#{partnership}"
         job_list = []
         query.get do |job|
             job_list << job.data
@@ -34,7 +34,7 @@ class Job < Base
     end
 
     def self.all_partnerships()
-        all_partnerships = (db_ref.get().map  { |x| x[:Partnership] }).compact.uniq
+        all_partnerships = (db_jobs_2021.get().map  { |x| x[:Partnership] }).compact.uniq
     end
 
     def self.partnership_for_user(user)
@@ -45,7 +45,11 @@ class Job < Base
     end
 
     def self.all_status()
-        all_status = db_ref.get().map  { |x| x[:Status] }
+        all_status = db_jobs_2021.get().map  { |x| x[:Status] }
+    end
+    
+    def self.unique_status()
+        all_status = db_job_statuses.get().map {|x| x.document_id }
     end
     
     def self.all_jobs_in_year(job_year)
@@ -90,9 +94,13 @@ class Job < Base
 
     private
     
-    attr_accessor :doc_ref
+    attr_accessor :db_jobs_2021_ref, :db_job_statuses
     
-    def self.db_ref()
-        @doc_ref ||= db_object.col "jobs_2021"
+    def self.db_jobs_2021()
+        @db_jobs_2021_ref ||= db_object.col "jobs_2021"
+    end
+    
+    def self.db_job_statuses()
+        @db_job_statuses_ref ||= db_object.col "job_statuses"
     end
 end
