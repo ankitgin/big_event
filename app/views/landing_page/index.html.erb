@@ -5,8 +5,8 @@
       <div class="card">
         <div class="card-body">
           <h1>Student Participants</h1>
-            <p class="card-text">Sign up for the Big Event by clicking the button below.</p>
-            <p><a href="https://bigeventonline.tamu.edu/signup" class="btn btn-primary">Online Student Sign-up</a></p>
+            <p class="card-text">Sign up fro the Big Event by clicking the button below.</p>
+            <p><a href="https://bigeventonline.tamu.edu/signup" class="btn btn-primary" id="signup_btn">Online Student Sign-up</a></p>
             <p>Already signed up for The Big Event? <a href="https://bigeventonline.tamu.edu/signup">Click here to view your registration details.</a></p>
             <%# <p><a href="/auth/google_oauth2">Click here for Google Authentication</a></p> %>
         </div>
@@ -17,7 +17,7 @@
         <div class="card-body">
           <h1>Community Members</h1>
             <p class="card-text">Submit your job request online! Click the button below to continue.</p>
-            <p><a href="https://bigeventonline.tamu.edu/jobrequest" class="btn btn-primary">Job Request Form</a></p>
+            <p><a href="https://bigeventonline.tamu.edu/jobrequest" class="btn btn-primary" id="jobrequest_btn">Job Request Form</a></p>
         </div>
       </div>
 
@@ -27,7 +27,7 @@
         <div class="card-body">
           <h1>The Big Event Committee</h1>
             <p class="card-text">Access committee services by clicking the button below.</p>
-            <p><%=link_to "Committee services", check_user_path(:user => "test@gmail.com"), class: "btn btn-primary"%></p>
+            <p><%=link_to "Committee Services", check_user_path, class: "btn btn-primary", id: "committee_services_btn"%></p>
         </div>
       </div>
 

@@ -100,12 +100,6 @@ Then /^(?:|I )should be on the "([^"]*)" page$/ do |page_name|
     assert_equal path_to(page_name), current_path
   end
 end
-
-Then /^(?:|I )should be redirected to "(.*)"$/ do |uri|
-    uri.should == current_url
-end
-
-
 # # Single-line step scoper
 # When /^(.*) within (.*[^:])$/ do |step, parent|
 #   with_scope(parent) { When step }

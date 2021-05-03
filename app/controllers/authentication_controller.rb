@@ -29,6 +29,7 @@ class AuthenticationController < ApplicationController
     def logout
         session.delete(:user_email)
         session.delete(:level)
+        session.delete(:partnershipnumber)
         session.delete(:expires_at)
         session.delete(:access_token)
         session.delete(:refresh_token)
@@ -40,6 +41,7 @@ class AuthenticationController < ApplicationController
         def log_in(user, credentials)
             session[:user_email] = user[:email]
             session[:level] = user[:level]
+            session[:partnershipnumber] = user[:partnershipnumber]
             session[:expires_at] = credentials.expires_at
             session[:access_token] = credentials.token
             

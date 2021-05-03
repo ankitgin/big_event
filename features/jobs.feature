@@ -10,6 +10,7 @@ Background: jobs have been added to database
   | 2022-0002               | 2A          | NEW      |
   | 2022-0003               | 2B          | NEW      |
   | 2022-0004               | 1C          | COMPLETE |
+  Then 5 seed jobs “2022-0000, 2022-0001, 2022-0002, 2022-0003, 2022-0004” should exist
 
   Scenario: Dummy test
     When I am on the HomePage
