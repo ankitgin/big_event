@@ -38,7 +38,7 @@ class Job < Base
     end
 
     def self.partnership_for_user(user)
-        query = db_ref.where "CommitteeEmail", "=", "#{user}"
+        query = db_jobs_2021.where "CommitteeEmail", "=", "#{user}"
         query.get do |job|
             return job.data[:Partnership]
         end
@@ -54,8 +54,8 @@ class Job < Base
     
     def self.all_jobs_in_year(job_year)
         job_list = []
-        #query = db_ref.where("JobNumber like ?", "#{job_year}")
-        query = db_ref.where("JobYear", "=", "#{job_year}")
+        #query = db_jobs_2021.where("JobNumber like ?", "#{job_year}")
+        query = db_jobs_2021.where("JobYear", "=", "#{job_year}")
         query.get do |j|
             job_list << j.data
         end
