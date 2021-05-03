@@ -4,7 +4,7 @@ class Job < Base
     # READ FROM A COLLECTION AND DOCUMENT
 
     def self.show(jobs_id)
-        query = db_ref.where "JobNumber", "=", "#{jobs_id}"
+        query = db_jobs_2021.where "JobNumber", "=", "#{jobs_id}"
         
         {}.tap do |hash|
             query.get do |job|
@@ -14,17 +14,13 @@ class Job < Base
     end
     
     def self.update(job_params)
-        job_ref = db_ref.doc "#{job_params[:JobNumber]}"
-        
-        job_params.each do |key, val|
-            job_ref.update({ "#{key}": "#{val}" })
-        end
-        
+        job_ref = db_jobs_2021.doc "#{job_params[:JobNumber]}"
+        job_ref.set(job_params.to_h)
         show(job_params[:JobNumber])
     end
 
     def self.jobs_for_partnership(partnership)
-        query = db_ref.where "Partnership", "=", "#{partnership}"
+        query = db_jobs_2021.where "Partnership", "=", "#{partnership}"
         job_list = []
         query.get do |job|
             job_list << job.data
@@ -33,25 +29,26 @@ class Job < Base
     end
 
     def self.all_partnerships()
-        all_partnerships = (db_ref.get().map  { |x| x[:Partnership] }).compact.uniq
-    end
-
-    def self.partnership_for_user(user)
-        query = db_ref.where "CommitteeEmail", "=", "#{user}"
-        query.get do |job|
-            return job.data[:Partnership]
-        end
+        all_partnerships = (db_jobs_2021.get().map  { |x| x[:Partnership] }).compact.uniq
     end
 
     def self.all_status()
-        all_status = db_ref.get().map  { |x| x[:Status] }
+        all_status = db_jobs_2021.get().map  { |x| x[:Status] }
+    end
+    
+    def self.unique_status()
+        all_status = db_job_statuses.get().map {|x| x.document_id }
     end
 
     private
     
-    attr_accessor :doc_ref
+    attr_accessor :db_jobs_2021_ref, :db_job_statuses
     
-    def self.db_ref()
-        @doc_ref ||= db_object.col "jobs_2021"
+    def self.db_jobs_2021()
+        @db_jobs_2021_ref ||= db_object.col "jobs_2021"
+    end
+    
+    def self.db_job_statuses()
+        @db_job_statuses_ref ||= db_object.col "job_statuses"
     end
 end

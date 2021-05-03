@@ -1,6 +1,7 @@
 <!--- Partnership selection -->
 <div class="dropdown">
-  <%= select_tag 'selected_partnership', options_for_select(@partnerships, :selected=>@current_partnership), :onchange => "indexAjax()" %>
+        <h6 class="h6"> Select partnership: </h6>   
+        <%= select_tag 'selected_partnership', options_for_select(@partnerships, :selected=>@current_partnership), :onchange => "indexAjax()" %>
 </div>
 
 

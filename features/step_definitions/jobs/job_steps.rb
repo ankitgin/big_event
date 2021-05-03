@@ -7,8 +7,11 @@ Given /the following jobs exist/ do |jobs_table|
   # fail "Unimplemented"
 end
 
-Then /(.*) seed jobs should exist/ do | n_seeds |
-  JobDb.count.should be n_seeds.to_i
+Then /(.*) seed jobs (.*) should exist/ do | n_seeds , jobs|
+  jobs = jobs.delete('\\"').split(',')  # removing backslash from the string and converting it into an array
+  jobs = jobs.map { |job| job.strip }   # strip extra space in the string
+  jobs_count = JobDb.jobs_count(jobs)
+  expect(jobs_count == n_seeds.to_i)
 end
 
 When "I am on the HomePage" do

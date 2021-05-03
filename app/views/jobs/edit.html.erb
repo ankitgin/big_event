@@ -1,0 +1,231 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/divbs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+<%= form_tag job_path, :method => :put do %>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <%= label :job, :resident_name, 'Resident Name'  %>
+            <%= text_field_tag "FirstName", job[:FirstName], class: "form-control"%>
+
+        </div>
+        
+        <div class="form-group col-md-4">
+            <%= label :job, :phone, 'Phone' %>
+            <%= text_field_tag "PhoneNumber", job[:PhoneNumber],class: "form-control" %>
+        </div>
+         <div class="form-group col-md-4">
+            <%= label :job, :best_time_to_call, 'Best Time To Call' %>
+            <%= text_field_tag "BestTimeToCall", job[:BestTimeToCall], class: "form-control" %>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <%= label :job, :partnership, 'Partnership'  %>
+            <div class="dropdown">
+                  <%= select_tag 'Partnership', options_for_select(partnerships, :selected=>job[:Partnership]),  class: "form-control", style: "height:34px" %>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <%= label :job, :status, 'Status' %>
+            <div class="dropdown">
+                  <%= select_tag 'Status', options_for_select(all_status, :selected=>job[:Status]),  class: "form-control", style: "height:34px" %>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <%= label :job, :job_number, 'Job Number' %>
+            <%= text_field_tag "JobNumber", job[:JobNumber], class: "form-control" , readonly: true  %>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group  col-md-12">
+            <%= label :job, :address, 'Address' %>
+            <%= text_field_tag "Address", job[:Address], class: "form-control" %>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group  col-md-12">
+            <%= label :job, :description, 'Job Description' %>
+            <%= text_field_tag "JobDescription", job[:JobDescription], class: "form-control" %>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group  col-md-12">
+            <%= label :job, :comment, 'Comment'  %>
+            <%= text_field_tag "Comment", job[:Comment], class: "form-control" %>
+        </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group  col-md-3">
+      <%= label :job, :parking_pass_label, 'Parking Pass Required?'  %>
+      <%= radio_button_tag "Parking Pass Required", "Yes", job[:"Parking Pass Required"]=="Yes" %>Yes
+      <%= radio_button_tag "Parking Pass Required", "No", job[:"Parking Pass Required"]=="No" %>No
+    </div>
+    <div class="form-group  col-md-3">
+      <%= label :job, :completable_in_rain, 'Completable in Rain?'  %>
+      <%= radio_button_tag "Completable in Rain", "Yes", job[:"Completable in Rain"]=="Yes" %>Yes
+      <%= radio_button_tag "Completable in Rain", "No", job[:"Completable in Rain"]=="No" %>No
+    </div>
+    <div class="form-group  col-md-3">
+      <%= label :job, :all_tools_provided, 'All tools provided?'  %>
+      <%= radio_button_tag "All tools provided", "Yes", job[:"All tools provided"]=="Yes" %>Yes
+      <%= radio_button_tag "All tools provided", "No", job[:"All tools provided"]=="No" %>No
+    </div>
+  </div>
+  <hr>
+  <h3> Supplies Needed</h3>
+  <hr>
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <table class="table table-striped col-md-12 table-bordered">
+      <thead>
+      <tr>
+        <th> </th>
+        <th> Provided </th>
+        <th> Needed </th>
+        <th> </th>
+        <th> Provided </th>
+        <th> Needed </th>
+        <th> </th>
+        <th> Provided </th>
+        <th> Needed </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td> Axes </td>
+        <td><%= text_field_tag "Axes Provided", job[:"Axes Provided"], class: "form-control"  %></td>
+        <td><%= text_field_tag "Axes Needed", job[:"Axes Needed"], class: "form-control"  %></td>
+        <td> Brooms </td>
+        <td><%= text_field_tag "Brooms Provided", job[:"Brooms Provided"], class: "form-control"  %></td>
+        <td><%= text_field_tag "Brooms Needed", job[:"Brooms Needed"], class: "form-control"  %></td>
+        <td> DropCloths </td>
+        <td><%= text_field_tag "DropCloths Provided", job[:"DropCloths Provided"], class: "form-control"  %></td>
+        <td><%= text_field_tag "DropCloths Needed", job[:"DropCloths Needed"], class: "form-control"  %></td>
+      </tr>
+      <tr>
+        <td> DustPans </td>
+        <td><%= text_field_tag "DustPans Provided", job[:"DustPans Provided"], class: "form-control"  %></td>
+        <td><%= text_field_tag "DustPans Needed", job[:"DustPans Needed"], class: "form-control"  %></td>
+        <td> FlatShovels </td>
+        <td><%= text_field_tag "FlatShovels Provided", job[:"FlatShovels Provided"], class: "form-control"  %></td>
+        <td><%= text_field_tag "FlatShovels Needed", job[:"FlatShovels Needed"], class: "form-control"  %></td>
+        <td> GardenSpades </td>
+        <td><%= text_field_tag "GardenSpades Provided", job[:"GardenSpades Provided"], class: "form-control"  %></td>
+        <td><%= text_field_tag "GardenSpades Needed", job[:"GardenSpades Needed"], class: "form-control"  %></td>
+      </tr>
+      <tr>
+        <td> Gloves </td>
+        <td><%= text_field_tag "Gloves Provided", job[:"Gloves Provided"], class: "form-control"  %></td>
+        <td><%= text_field_tag "Gloves Needed", job[:"Gloves Needed"], class: "form-control"  %></td>
+        <td> Hammers </td>
+        <td><%= text_field_tag "Hammers Provided", job[:"Hammers Provided"], class: "form-control"  %></td>
+        <td><%= text_field_tag "Hammers Needed", job[:"Hammers Needed"], class: "form-control"  %></td>
+        <td> HandClippers </td>
+        <td><%= text_field_tag "HandClippers Provided", job[:"HandClippers Provided"], class: "form-control"  %></td>
+        <td><%= text_field_tag "HandClippers Needed", job[:"HandClippers Needed"], class: "form-control"  %></td>
+      </tr>
+      <tr>
+        <td> HardRakes </td>
+        <td><%= text_field_tag "HardRakes Provided", job[:"HardRakes Provided"], class: "form-control"  %></td>
+        <td><%= text_field_tag "HardRakes Needed", job[:"HardRakes Needed"], class: "form-control"  %></td>
+        <td> HedgeShears </td>
+        <td><%= text_field_tag "HedgeShears Provided", job[:"HedgeShears Provided"], class: "form-control"  %></td>
+        <td><%= text_field_tag "HedgeShears Needed", job[:"HedgeShears Needed"], class: "form-control"  %></td>
+        <td> Hoes </td>
+        <td><%= text_field_tag "Hoes Provided", job[:"Hoes Provided"], class: "form-control"  %></td>
+        <td><%= text_field_tag "Hoes Needed", job[:"Hoes Needed"], class: "form-control"  %></td>
+      </tr>
+      <tr>
+        <td> Ladders </td>
+        <td><%= text_field_tag "Ladders Provided", job[:"Ladders Provided"], class: "form-control"  %></td>
+        <td><%= text_field_tag "Ladders Needed", job[:"Ladders Needed"], class: "form-control"  %></td>
+        <td> LeafRakes </td>
+        <td><%= text_field_tag "LeafRakes Provided", job[:"LeafRakes Provided"], class: "form-control"  %></td>
+        <td><%= text_field_tag "LeafRakes Needed", job[:"LeafRakes Needed"], class: "form-control"  %></td>
+        <td> Mops </td>
+        <td><%= text_field_tag "Mops Provided", job[:"Mops Provided"], class: "form-control"  %></td>
+        <td><%= text_field_tag "Mops Needed", job[:"Mops Needed"], class: "form-control"  %></td>
+      </tr>
+      <tr>
+        <td> PaintBrushes </td>
+        <td><%= text_field_tag "PaintBrushes Provided", job[:"PaintBrushes Provided"], class: "form-control"  %></td>
+        <td><%= text_field_tag "PaintBrushes Needed", job[:"PaintBrushes Needed"], class: "form-control"  %></td>
+        <td> PaintGallons </td>
+        <td><%= text_field_tag "PaintGallons Provided", job[:"PaintGallons Provided"], class: "form-control"  %></td>
+        <td><%= text_field_tag "PaintGallons Needed", job[:"PaintGallons Needed"], class: "form-control"  %></td>
+        <td> PaintRollers </td>
+        <td><%= text_field_tag "PaintRollers Provided", job[:"PaintRollers Provided"], class: "form-control"  %></td>
+        <td><%= text_field_tag "PaintRollers Needed", job[:"PaintRollers Needed"], class: "form-control"  %></td>
+      </tr>
+      <tr>
+        <td> PaintScrapers </td>
+        <td><%= text_field_tag "PaintScrapers Provided", job[:"PaintScrapers Provided"], class: "form-control"  %></td>
+        <td><%= text_field_tag "PaintScrapers Needed", job[:"PaintScrapers Needed"], class: "form-control"  %></td>
+        <td> PaintTrays </td>
+        <td><%= text_field_tag "PaintTrays Provided", job[:"PaintTrays Provided"], class: "form-control"  %></td>
+        <td><%= text_field_tag "PaintTrays Needed", job[:"PaintTrays Needed"], class: "form-control"  %></td>
+        <td> PaperTowels </td>
+        <td><%= text_field_tag "PaperTowels Provided", job[:"PaperTowels Provided"], class: "form-control"  %></td>
+        <td><%= text_field_tag "PaperTowels Needed", job[:"PaperTowels Needed"], class: "form-control"  %></td>
+      </tr>
+      <tr>
+        <td> RollerExtensions </td>
+        <td><%= text_field_tag "RollerExtensions Provided", job[:"RollerExtensions Provided"], class: "form-control"  %></td>
+        <td><%= text_field_tag "RollerExtensions Needed", job[:"RollerExtensions Needed"], class: "form-control"  %></td>
+        <td> Saws </td>
+        <td><%= text_field_tag "Saws Provided", job[:"Saws Provided"], class: "form-control"  %></td>
+        <td><%= text_field_tag "Saws Needed", job[:"Saws Needed"], class: "form-control"  %></td>
+        <td> ScouringPads </td>
+        <td><%= text_field_tag "ScouringPads Provided", job[:"ScouringPads Provided"], class: "form-control"  %></td>
+        <td><%= text_field_tag "ScouringPads Needed", job[:"ScouringPads Needed"], class: "form-control"  %></td>
+      </tr>
+      <tr>
+        <td> SpadeShovels </td>
+        <td><%= text_field_tag "SpadeShovels Provided", job[:"SpadeShovels Provided"], class: "form-control"  %></td>
+        <td><%= text_field_tag "SpadeShovels Needed", job[:"SpadeShovels Needed"], class: "form-control"  %></td>
+        <td> TrashBags </td>
+        <td><%= text_field_tag "TrashBags Provided", job[:"TrashBags Provided"], class: "form-control"  %></td>
+        <td><%= text_field_tag "TrashBags Needed", job[:"TrashBags Needed"], class: "form-control"  %></td>
+        <td> TreeTrimmers </td>
+        <td><%= text_field_tag "TreeTrimmers Provided", job[:"TreeTrimmers Provided"], class: "form-control"  %></td>
+        <td><%= text_field_tag "TreeTrimmers Needed", job[:"TreeTrimmers Needed"], class: "form-control"  %></td>
+      </tr>
+      <tr>
+        <td> TrenchingShovels </td>
+        <td><%= text_field_tag "TrenchingShovels Provided", job[:"TrenchingShovels Provided"], class: "form-control"  %></td>
+        <td><%= text_field_tag "TrenchingShovels Needed", job[:"TrenchingShovels Needed"], class: "form-control"  %></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <hr>
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="form-group  col-md-3">
+      <%= label :job, 'Ordering T-Shirts', 'Ordering T-Shirts?'  %>
+      <%= radio_button_tag "Ordering T-Shirts", "Yes", job[:"Ordering T-Shirts"]=="Yes" %>Yes
+      <%= radio_button_tag "Ordering T-Shirts", "No", job[:"Ordering T-Shirts"]=="No" %>No
+    </div>
+      <table class="table table-striped col-md-6 table-bordered">
+        <thead>
+        <tr>
+          <th>S</th>
+          <th>M</th>
+          <th>L</th>
+          <th>XL</th>
+          <th>XXL</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td><%= text_field_tag 'S', job[:S], class: "form-control" %></td>
+          <td><%= text_field_tag 'M', job[:M], class: "form-control" %></td>
+          <td><%= text_field_tag 'L', job[:L], class: "form-control" %></td>
+          <td><%= text_field_tag 'XL', job[:XL], class: "form-control" %></td>
+          <td><%= text_field_tag 'XXL', job[:XXL], class: "form-control" %></td>
+        </tr>
+      </table>
+  </div>
+  <hr>
+  <%= submit_tag 'Update Job Info', :class => 'btn btn-primary' %>
+  <%= link_to 'Cancel', job_path("#{job[:JobNumber]}"), :class => 'btn btn-secondary' %>
+<% end %>
