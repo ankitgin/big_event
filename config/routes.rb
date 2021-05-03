@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   get '/dummy', to: 'partnership#check_user', as: 'check_user'
   get '/status', to: 'job_status#show'
+  get '/dummy1', to: 'jobs#update_job_status', as: 'update_job_status'
 
   get '/users', to: 'users#index'
   post '/users/upload', to: 'users#upload', as: 'upload'

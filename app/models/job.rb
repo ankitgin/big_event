@@ -24,6 +24,13 @@ class Job < Base
         show(job_params[:JobNumber])
     end
 
+    # def self.update_status(job)
+    #     job_ref = db_jobs_2021.doc "#{job[:JobNumber]}"
+    #     debugger
+    #     job_ref.set(job)
+    #     show(job[:JobNumber])
+    # end
+
     def self.jobs_for_partnership(partnership)
         query = db_jobs_2021.where "Partnership", "=", "#{partnership}"
         job_list = []
