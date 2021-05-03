@@ -26,11 +26,11 @@ class JobsController < ApplicationController
 
   def update_job_status
     job = params[:job_data]
-    if (job[:Status]=="Not Completed")
-      job[:Status]="Job Check Scheduled"
-    elsif (job[:Status]=="Job Check Scheduled")
-      job[:Status]="Completed by SA"
-    elsif (job[:Status]=="Completed by SA")
+    job[:Status]="Job Check Scheduled" if (job[:Status]=="Not Completed")
+    job[:Status]="Completed by SA" if (job[:Status]=="Job Check Scheduled")
+    job[:Status]="Completed" if (job[:Status]=="Submitted to EX")
+    
+    if (job[:Status]=="Completed by SA")
       job[:Status]="Submitted to CM"
       if(session[:user_email].present?)
         job[:CommitteeEmail] = ::User.get_superior_email(session[:user_email])
@@ -40,16 +40,13 @@ class JobsController < ApplicationController
       if(session[:user_email].present?)
         job[:ExecEmail] = ::User.get_superior_email(session[:user_email])
       end
-    elsif (job[:Status]=="Submitted to EX")
-      job[:Status]="Completed"
     end
-
-    if(params[:cancel]=="true")
-      job[:Status]="Cancelled"
-    end
+    
+    job[:Status]="Cancelled" if(params[:cancel]=="true")
+    
     job.permit!
-    job_update = ::Job.update(job)
-    redirect_to(job_path(id: job_update[:data][:JobNumber]))
+    job = ::Job.update(job)
+    redirect_to(job_path(id: job[:data][:JobNumber]))
   end
 
   private
@@ -67,42 +64,34 @@ class JobsController < ApplicationController
   end
 
   def access_control(current_status, user_level, user_email, committee_email="", exec_email="")
-    button_value=""
     cancel=false
     access_given=false
 
     if(current_status == "Not Completed")
-      button_value = "Schedule Job Check"
-      if(user_level=="SA")
-        access_given=true
-      end
+      access_given=true if(user_level=="SA")
     elsif(current_status == "Job Check Scheduled")
-      button_value = "Complete Job Check"
-      if(user_level=="SA")
-        access_given=true
-      end
+      access_given=true if(user_level=="SA")
     elsif(current_status == "Completed by SA")
-      button_value = "Submit to CM"
-      if(user_level=="SA")
-        access_given=true
-      end
+      access_given=true if(user_level=="SA")
     elsif(current_status == "Submitted to CM")
-      button_value = "Submit to EX"
-      if(user_level=="CM" && user_email==committee_email)
-        access_given = true
-      end
-    elsif(current_status == "Completed")
-      button_value = "Complete"
-    else
-      button_value = "NA"
-      access_given = false
+      access_given = true if(user_level=="CM" && user_email==committee_email)
     end
+  
     if(user_level=="EX")
       cancel=true
       access_given = true
     end
-    [button_value, access_given, cancel]
+    
+    [button_value(current_status), access_given, cancel]
   end
-
+  
+  def button_value(current_status)
+    return "Schedule Job Check" if(current_status == "Not Completed") 
+    return "Complete Job Check" if(current_status == "Job Check Scheduled")
+    return "Submit to CM" if(current_status == "Completed by SA")
+    return "Submit to EX" if(current_status == "Submitted to CM")
+    return "Complete" if(current_status == "Completed")
+    "NA"
+  end
 
 end
