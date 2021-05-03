@@ -33,7 +33,11 @@ class User < Base
     end
 
     def self.executive?(user_doc)
-        return user_doc[:level] == "EX"
+        if user_doc.exists?
+            return user_doc[:level] == "EX"
+        else    
+            return false
+        end
     end
 
     def self.get(email)
