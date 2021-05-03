@@ -223,6 +223,180 @@
     </table>
    <% end %>
   </div>
+  
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="form-group  col-md-4">
+      <%= label :job, 'Yard Sign', 'Are you interested in ordering yard sign?*:'  %>
+      <%= radio_button_tag "Yard Sign", "Yes", job[:"Yard Sign"]=="Yes", disabled: true %>Yes
+      <%= radio_button_tag "Yard Sign", "No", job[:"Yard Sign"]=="No", disabled: true %>No
+    </div>
+  </div>
+  
+  <h3>Resident Biography</h3>
+  <hr>
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="form-group  col-md-4">
+      <%= label :job, 'Years participated in The Big Event', 'Years participated in The Big Event:'  %>
+      <td><%= text_field_tag "Years participated in The Big Event", job[:"Years participated in The Big Event"], class: "form-control", readonly: true  %></td>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="form-group  col-md-12">
+      <%= label :job, 'Recipient Biography', 'Recipient Biography:'  %>
+      <p>Include a brief description of the recipient. This will be printed on all Job Information Forms for organizations. The surrounding text will automatically be included in
+any biographical messages.</p>
+      <p>Howdy!</p>
+      <p>Thank you for signing up for The Big Event! We wanted to tell you a bit about the community member whom you will be serving today.</p>
+      <%= text_field_tag "Recipient Biography", job[:"Recipient Biography"], class: "form-control", readonly: true  %>
+      <p>Enjoy serving with our Aggie family!</p>
+    </div>
+  </div>
+  
+  <h3>Risk Evaluation</h3>
+  <hr>
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="form-group  col-md-4">
+      <%= label :job, 'Is there a pet at the residence?', 'Is there a pet at the residence?'  %>
+      <%= radio_button_tag "Is there a pet at the residence?", "Yes", job[:"Is there a pet at the residence?"]=="Yes", disabled: true %>Yes
+      <%= radio_button_tag "Is there a pet at the residence?", "No", job[:"Is there a pet at the residence?"]=="No", disabled: true %>No
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="form-group  col-md-12">
+      <%= label :job, 'If yes, what type of pet?', 'If yes, what type of pet?:'  %>
+      <%= text_field_tag "If yes, what type of pet?", job[:"If yes, what type of pet?"], class: "form-control", readonly: true  %>
+    </div>
+  </div>
+  <div class="form-group col-xs-12 col-sm-12 col-md-12">
+    <div class="form-group  col-md-4">
+      <%= label :job, 'Overall, is there a risk?:', 'Overall, is there a risk?:?'  %>
+      <p>Do not mark if it is just a pet</p>
+      <%= radio_button_tag "Overall, is there a risk?", "Yes", job[:"Overall, is there a risk?"]=="Yes", disabled: true %>Yes
+      <%= radio_button_tag "Overall, is there a risk?", "No", job[:"Overall, is there a risk?"]=="No", disabled: true %>No
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="form-group  col-md-12">
+      <%= label :job, 'If so, what is the risk?', 'If so, what is the risk?:'  %>
+      <%= text_field_tag "If so, what is the risk?", job[:"If so, what is the risk?"], class: "form-control", readonly: true  %>
+    </div>
+  </div>
+  
+  <h3>Media Job?</h3>
+  <hr>
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="form-group  col-md-4">
+      <%= label :job, 'Is this a media job?', 'Is this a media job?:'  %>
+      <p>Check "Yes" for any job that is suitable for press coverage.</p>
+      <%= radio_button_tag "Is this a media job?", "Yes", job[:"Is this a media job?"]=="Yes", disabled: true %>Yes
+      <%= radio_button_tag "Is this a media job?", "No", job[:"Is this a media job?"]=="No", disabled: true %>No
+    </div>
+  </div>
+  
+  <h3>Committee Check</h3>
+  <hr>
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="form-group  col-md-4">
+      <%= label :job, 'Is Job Site Checklist Complete?', 'Is Job Site Checklist Complete?:'  %>
+      <%= radio_button_tag "Is Job Site Checklist complete?", "Yes", job[:"Is Job Site Checklist complete?"]=="Yes", disabled: true %>Yes
+      <%= radio_button_tag "Is Job Site Checklist complete?", "No", job[:"Is Job Site Checklist complete?"]=="No", disabled: true %>No
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="form-group  col-md-4">
+      <%= label :job, 'Is Risk Eval Complete?', 'Is Risk Eval Complete?:'  %>
+      <%= radio_button_tag "Is Risk Eval Complete?", "Yes", job[:"Is Risk Eval Complete?"]=="Yes", disabled: true %>Yes
+      <%= radio_button_tag "Is Risk Eval Complete?", "No", job[:"Is Risk Eval Complete?"]=="No", disabled: true %>No
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="form-group  col-md-4">
+      <%= label :job, 'Is Recipient Biography Complete?', 'Is Recipient Biography Complete?:'  %>
+      <%= radio_button_tag "Is Recipient Biography complete?", "Yes", job[:"Is Recipient Biography complete?"]=="Yes", disabled: true %>Yes
+      <%= radio_button_tag "Is Recipient Biography complete?", "No", job[:"Is Recipient Biography complete?"]=="No", disabled: true %>No
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="form-group  col-md-4">
+      <%= label :job, 'Is Waiver/Indemnation Form Complete?', 'Is Waiver/Indemnation Form Complete?:'  %>
+      <%= radio_button_tag "Is Waiver/Indemnation Form Complete?", "Yes", job[:"Is Waiver/Indemnation Form Complete?"]=="Yes", disabled: true %>Yes
+      <%= radio_button_tag "Is Waiver/Indemnation Form Complete?", "No", job[:"Is Waiver/Indemnation Form Complete?"]=="No", disabled: true %>No
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="form-group  col-md-4">
+      <%= label :job, 'Is "Thank You" Note Complete?', 'Is "Thank You" Note Complete?:'  %>
+      <%= radio_button_tag "Is 'Thank You' Note complete?", "Yes", job[:"Is 'Thank You' Note complete?"]=="Yes", disabled: true %>Yes
+      <%= radio_button_tag "Is 'Thank You' Note complete?", "No", job[:"Is 'Thank You' Note complete?"]=="No", disabled: true %>No
+    </div>
+  </div>
+  
+  <h3>Exec Check</h3>
+  <hr>
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="form-group  col-md-4">
+      <%= label :job, 'Is Job Reviewed by Exec?', 'Is Job Reviewed by Exec?:'  %>
+      <%= radio_button_tag "Is job reviewed by exec?", "Yes", job[:"Is job reviewed by exec?"]=="Yes", disabled: true %>Yes
+      <%= radio_button_tag "Is job reviewed by exec?", "No", job[:"Is job reviewed by exec?"]=="No", disabled: true %>No
+    </div>
+  </div>
+  
+  <h3>Day of</h3>
+  <hr>
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="form-group  col-md-4">
+      <%= label :job, 'Backup Job?', 'Backup Job?:'  %>
+      <p>For executive staff use only.</p>
+      <%= radio_button_tag "Backup job?", "Yes", job[:"Backup job?"]=="Yes", disabled: true %>Yes
+      <%= radio_button_tag "Backup job?", "No", job[:"Backup job?"]=="No", disabled: true %>No
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="form-group  col-md-4">
+      <%= label :job, 'See Solutions?', 'See Solutions?:'  %>
+      <p>If set to "Yes", a warning will pop up when this job is checked in on the day of the event.
+Ex: Job canceled after all information has been printed for student organization meetings</p>
+      <%= radio_button_tag "See Solutions?", "Yes", job[:"See Solutions?"]=="Yes", disabled: true %>Yes
+      <%= radio_button_tag "See Solutions?", "No", job[:"See Solutions?"]=="No", disabled: true %>No
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="form-group  col-md-4">
+      <%= label :job, 'Is Checked In', 'Is Checked In:'  %>
+      <p>For use ONLY on the day of The Big Event.</p>
+      <%= radio_button_tag "Is Checked In", "Yes", job[:"Is Checked In"]=="Yes", disabled: true %>Yes
+      <%= radio_button_tag "Is Checked In", "No", job[:"Is Checked In"]=="No", disabled: true %>No
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="form-group  col-md-4">
+      <%= label :job, '# of Students Assigned:'  %>
+      <p>This number is automatically calculated by the number of participants in the assigned organization.</p>
+    </div>
+  </div>
+  
+  <h3>Cancel</h3>
+  <hr>
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="form-group  col-md-4">
+      <%= label :job, 'Is Job Cancelled?', 'Is Job Cancelled?:'  %>
+      <p>For use ONLY on the day of The Big Event.</p>
+      <%= radio_button_tag "Is Job Cancelled", "No", job[:"Is Job Cancelled"]=="No", disabled: true %>No
+      <%= radio_button_tag "Is Job Cancelled", "Yes", job[:"Is Job Cancelled"]=="Yes", disabled: true %>Yes - Enter a date and reason
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="form-group  col-md-4">
+      <%= label :job, 'Cancellation Date', 'Cancellation Date:' %>
+      <%= date_field_tag("Cancellation Date", Date.today, disabled: true)%>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="form-group  col-md-4">
+      <%= label :job, 'Cancellation Reason', 'Cancellation Reason:'  %>
+      <%= text_field_tag "Cancellation Reason", job[:"Cancellation Reason"], class: "form-control", readonly: true  %>
+    </div>
+  </div>
 
   <div>
     <% if(action_button_access) %>
@@ -239,6 +413,5 @@
   </div>
 
 </form>
-
 
 
