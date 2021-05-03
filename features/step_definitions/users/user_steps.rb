@@ -32,30 +32,25 @@ Given /the following users exist/ do |users_table|
   # end
 
   Then /^I should see all users$/ do 
-    # FIX ME: Currently does not run because can not gain access to staff directory page
     rows = page.all('#users tbody tr').size
     expect(rows).to eq UserDb.count
   end
 
-  And /^I upload '(.*)'$/ do |file_name|
+  Then /^I upload "(.*)"$/ do |file_name|
     attach_file(:csv_file, File.join(Rails.root, 'features', 'test-files', file_name))
     click_button "Upload CSV"
   end
 
-  # Then /^I should see '(.*)' on the users page$/ do |email|
-  #   page.has_content?(email)
-  # end
-
-  Then /^I should receive the csv file: '(.*)'$/ do |file_name| 
+  Then /^I should receive the csv file: "(.*)"$/ do |file_name| 
     page.response_headers['Content-Disposition'].should include("filename=\"#{file_name}\"")
   end
 
-  Given /^the exported file, '(.*)', exists$/ do |file_name|
+  Given /^the exported file, "(.*)", exists$/ do |file_name|
     file_path = File.join(Rails.root, 'features', 'test-files', file_name)
     File.exist?(file_path)
   end
 
-  Then /^'(.*)' should contain the database information$/ do |file_name|
+  Then /^"(.*)" should contain the database information$/ do |file_name|
     file_path = File.join(Rails.root, 'features', 'test-files', file_name)
     user_table = CSV.parse(File.read(file_path),:headers => :true, :header_converters => :symbol)
     valid = true

@@ -80,7 +80,7 @@ class User < Base
                     user_entry[field[0]]= field[1]
                 end
                 if !id.nil?
-                    b.set("staff/"+id, user_entry)
+                    b.set(Rails.configuration.user_col + "/" + id, user_entry)
                 end
             end 
         end
