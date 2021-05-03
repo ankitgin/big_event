@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   root 'landing_page#index'
   resources :jobs, only: [:show, :edit, :update]
   resources :partnership, only: [:show]
+  resources :job_year, only: [:show]
   
   get 'auth/:provider/callback', to: 'authentication#googleAuth'
   get 'auth/failure', to: redirect('/')
@@ -17,6 +18,9 @@ Rails.application.routes.draw do
 
   get '/users', to: 'users#index'
   post '/users/upload', to: 'users#upload', as: 'upload'
+  
+  post '/job_year/upload_jobs', to: 'job_year#upload_jobs', as: 'upload_jobs'
+  
   #get "/jobrequest" => redirect("https://bigeventonline.tamu.edu/jobrequest"), :as => :jobrequest
   #get "/signup" => redirect("https://bigeventonline.tamu.edu/signup"), :as => :signup
 

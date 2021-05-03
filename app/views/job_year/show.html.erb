@@ -1,0 +1,47 @@
+<!--- Partnership selection -->
+<div class="dropdown">
+  <%= select_tag 'selected_job_year', options_for_select(@all_job_years, :selected=>@current_job_year), :onchange => "indexAjax()" %>
+</div>
+
+<%= link_to 'Export to CSV', job_year_path(format: :csv) , class: 'btn btn-primary', style: 'display:inline;' %>
+<%= form_tag({:action => :upload_jobs}, style: 'display:inline;', :multipart => true) do %>
+  <%= submit_tag "Upload CSV", class: 'btn btn-primary' %>
+  <%= file_field_tag :attachments, multiple: true, direct_upload: true %>
+<% end %>
+
+
+<!--- Jobs according to partnership and staff login-->
+<table class="table table-hover table-striped col-md-12">
+    <thead>
+    <tr>
+      <th>Jobs</th>
+      <th>Status</th>
+      <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @jobs.each do |job| %>
+      <tr>
+        <td>
+          <%= link_to  "#{job[:JobNumber]}", job_path("#{job[:JobNumber]}"), id: 'job_link' %>
+        </td>
+        <td>
+          <%= job[:Status] %>
+        </td>
+        <td>
+          <%= job[:JobDescription] %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+<!--- jobs pages navigation if jobs>50 or so --->
+<script>
+  function indexAjax() {
+      job_year = $("[name='selected_job_year']");
+      name = job_year.val()
+      loc = "/job_year/" + name;
+      window.location = loc
+  }
+</script>
