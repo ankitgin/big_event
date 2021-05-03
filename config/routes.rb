@@ -10,10 +10,15 @@ Rails.application.routes.draw do
   
   get 'auth/:provider/callback', to: 'authentication#googleAuth'
   get 'auth/failure', to: redirect('/')
- 
+  get '/logout', to: 'authentication#logout'
+
   get '/dummy', to: 'partnership#check_user', as: 'check_user'
   get '/status', to: 'job_status#show'
+
   get '/users', to: 'users#index'
   post '/users/upload', to: 'users#upload', as: 'upload'
+  #get "/jobrequest" => redirect("https://bigeventonline.tamu.edu/jobrequest"), :as => :jobrequest
+  #get "/signup" => redirect("https://bigeventonline.tamu.edu/signup"), :as => :signup
+
 
 end

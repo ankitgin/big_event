@@ -71,7 +71,7 @@ Rails.application.configure do
       "token" => "TOKEN",
       "refresh_token" => "REFRESH_TOKEN",
       "expires_at" => 1496120719,
-      "expires" => true
+      "expires" => false
     }
   })
 end

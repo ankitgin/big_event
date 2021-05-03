@@ -6,7 +6,6 @@ class UserDb < Base
         user_ref.set(user_params)
         
         #show(user_params[:email])
-
     end
 
     def initialize(user_doc)
@@ -39,8 +38,16 @@ class UserDb < Base
         end
     end
 
+    def self.remove(email)
+        db_ref_staff.doc(email).delete
+    end
+
     def self.get(email)
         db_ref_staff.doc(email).get
+    end
+
+    def self.set_level(email, level)
+        db_ref_staff.doc(email).set({level: level}, merge: true)
     end
 
     private

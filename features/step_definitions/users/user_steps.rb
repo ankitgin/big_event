@@ -7,45 +7,31 @@ Given /the following users exist/ do |users_table|
     end
   end
 
-
-  When /^I press "(.*)"$/ do |button|
-    click_link button
-  end
-  
-  Then /^(?:|I )should be on (.+)$/ do |page_name|
-    current_path = URI.parse(current_url).path
-    if current_path.respond_to? :should
-      current_path.should == path_to(page_name)
-    else
-      assert_equal path_to(page_name), current_path
-    end
-  end
-  
-  When /^the authentication page/ do
-    redirect_to '/auth/google_oauth2'
-  end
-  
-  When('I have a valid email') do
-    
-  end
-  
-  Then('I am logged in') do
-    pending # Write code here that turns the phrase above into concrete actions
+  Given /^the staff member, "(.*)", is removed from the directory$/ do |email|
+    UserDb.remove(email)
   end
 
-  Given /^I am logged in as '(.*)'$/ do |user_email|
+  Given /^I, "(.*)", am an "(.*)" level$/ do |email, level|
+    UserDb.set_level(email, level)
+  end
+
+  When /^I log in as "(.*)"$/ do |user_email|
+    visit 'auth/:provider/callback'
+  end
+
+  Given /^I am logged in as "(.*)"$/ do |user_email|
     visit 'auth/:provider/callback'
   end
   
-  When('I am on the users page') do
-    visit users_path
-  end
+  # When('I am on the users page') do
+  #   visit users_path
+  # end
 
   # And /^I am an '(.*)'$/ do |level|
   #   expect(ApplicationHelper.level).to eq level
   # end
 
-  Then /^I should see all (.*)$/ do |content_type|
+  Then /^I should see all users$/ do 
     # FIX ME: Currently does not run because can not gain access to staff directory page
     rows = page.all('#users tbody tr').size
     expect(rows).to eq UserDb.count
@@ -56,9 +42,9 @@ Given /the following users exist/ do |users_table|
     click_button "Upload CSV"
   end
 
-  Then /^I should see '(.*)' on the users page$/ do |email|
-    page.has_content?(email)
-  end
+  # Then /^I should see '(.*)' on the users page$/ do |email|
+  #   page.has_content?(email)
+  # end
 
   Then /^I should receive the csv file: '(.*)'$/ do |file_name| 
     page.response_headers['Content-Disposition'].should include("filename=\"#{file_name}\"")
