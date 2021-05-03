@@ -67,15 +67,10 @@ class JobsController < ApplicationController
     cancel=false
     access_given=false
 
-    if(current_status == "Not Completed")
-      access_given=true if(user_level=="SA")
-    elsif(current_status == "Job Check Scheduled")
-      access_given=true if(user_level=="SA")
-    elsif(current_status == "Completed by SA")
-      access_given=true if(user_level=="SA")
-    elsif(current_status == "Submitted to CM")
-      access_given = true if(user_level=="CM" && user_email==committee_email)
-    end
+    access_given=true if(current_status == "Not Completed" && user_level=="SA")
+    access_given=true if(current_status == "Job Check Scheduled" && user_level=="SA")
+    access_given=true if(current_status == "Completed by SA" && user_level=="SA")
+    access_given = true if(current_status == "Submitted to CM" && user_level=="CM" && user_email==committee_email)
   
     if(user_level=="EX")
       cancel=true
