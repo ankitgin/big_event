@@ -7,22 +7,41 @@ class User < Base
     attr_accessor :email, :first_name, :last_name, :level, :uin, :partnership_number, :superior_email, :committee
 
     def initialize(user_doc)
-        @email = user_doc[:email]
-        @first_name = user_doc[:firstname]
-        @last_name = user_doc[:lastname]
-        @level = user_doc[:level]
-        @partnership_number = user_doc[:partnershipnumber]
-        @committee = user_doc[:committee]
-        @superior_email = user_doc[:superioremail]
-        @uin = user_doc[:uin]
+        if !User.staff_member?(user_doc)
+            @email = ""
+            @first_name = ""
+            @last_name = ""
+            @level = ""
+            @partnership_number = ""
+            @committee = ""
+            @superior_email = ""
+            @uin = ""
+        else 
+            @email = user_doc[:email]
+            @first_name = user_doc[:firstname]
+            @last_name = user_doc[:lastname]
+            @level = user_doc[:level]
+            @partnership_number = user_doc[:partnershipnumber]
+            @committee = user_doc[:committee]
+            @superior_email = user_doc[:superioremail]
+            @uin = user_doc[:uin]
+        end
     end
 
     def self.staff_member?(user_doc)
         return user_doc.exists?
     end
 
+    def self.executive?(user_doc)
+        if user_doc.exists?
+            return user_doc[:level] == "EX"
+        else    
+            return false
+        end
+    end
+
     def self.get(email)
-        db_ref_staff.doc(email).get
+       db_ref_staff.doc(email).get
     end
 
     def save
@@ -65,7 +84,7 @@ class User < Base
                     user_entry[field[0]]= field[1]
                 end
                 if !id.nil?
-                    b.set("staff/"+id, user_entry)
+                    b.set(Rails.configuration.user_col + "/" + id, user_entry)
                 end
             end 
         end
@@ -96,7 +115,7 @@ class User < Base
     private
         attr_accessor :doc_ref_staff
         def self.db_ref_staff()
-            @doc_ref_staff ||= db_object.col "staff"
+            @doc_ref_staff ||= db_object.col Rails.configuration.user_col
         end
 
         def self.original_content_type(original_filename)

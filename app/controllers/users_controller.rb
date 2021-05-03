@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     def index
-        if session[:level] != 'EX'
+        if !User.executive?(User.get(session[:user_email]))
             flash[:warning] = "User does not have access to staff directory."
             redirect_to root_path
         end
@@ -8,7 +8,7 @@ class UsersController < ApplicationController
         # @users = []
         respond_to do |format|
             format.html
-            format.csv { send_data User.to_csv, filename: "TBE-staff-directory-#{Date.today}.csv" }
+            format.csv { send_data User.to_csv, filename: "TBE-staff-directory.csv" }
         end
     end
 

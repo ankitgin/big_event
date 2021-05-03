@@ -34,7 +34,7 @@
       <nav class="navbar navbar-expand-md navbar-light bg-light">
         <div class="container-fluid">
           <% if is_logged_in?%>
-            <h2 class="font-weight-bold"> Welcome <%= current_user.first_name %>!</h2>
+            <h2 class="font-weight-bold"> Welcome <%= current_user.first_name %> <%= current_user.last_name %>!</h2>
           <% else%> 
             <h2 class="font-weight-bold"> Welcome! </h2>
           <% end %>

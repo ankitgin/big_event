@@ -11,6 +11,7 @@ module NavigationHelpers
       when /^HomePage$/ then '/'
       when /^Job Request/ then "/jobrequest"
       when /^Sign Up/ then "https://bigeventonline.tamu.edu/signup"
+      when /^Staff Directory/ then "/users"
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
