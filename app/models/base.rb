@@ -13,7 +13,7 @@ class Base
         @cred ||= Google::Cloud::Firestore::Credentials.new(gcp)        
         
         @db ||= Google::Cloud::Firestore.new(
-            project_id: 'the-big-event-online',
+            project_id: 'fireapp-49269',
             credentials: @cred
         )
     end
