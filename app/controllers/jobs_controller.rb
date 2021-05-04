@@ -87,6 +87,7 @@ class JobsController < ApplicationController
     access_given=true if(current_status == "Job Check Scheduled" && user_level=="SA")
     access_given=true if(current_status == "Completed by SA" && user_level=="SA")
     access_given = true if(current_status == "Submitted to CM" && user_level=="CM" && user_email==committee_email)
+    access_given = true if(current_status == "Submitted to EX" && user_level=="EX" && user_email==exec_email)
   
     if(user_level=="EX")
       cancel=true
@@ -101,7 +102,7 @@ class JobsController < ApplicationController
     return "Complete Job Check" if(current_status == "Job Check Scheduled")
     return "Submit to CM" if(current_status == "Completed by SA")
     return "Submit to EX" if(current_status == "Submitted to CM")
-    return "Complete" if(current_status == "Completed")
+    return "Complete" if(current_status == "Submitted to EX")
     "NA"
   end
 
